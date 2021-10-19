@@ -1,0 +1,105 @@
+.login_page, .signup_page{
+    width: 100%;
+    height: 106.37vh;
+    font-family: 'Industry';
+}
+
+.form_container{
+    width: 34.51vw;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.login_container{
+    height: 80vh;
+    margin: 110px auto 0;
+}
+
+.signup_container{
+    height: 88.37vh;
+    margin: 80px auto 0;
+}
+
+.form_header{
+    background: #789BCD;
+    width: 100%;
+    height: 13.57vh;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+    padding: 30px;
+    font-size: 2.25em;
+    font-weight: 500;
+    color: #fff;
+    line-height: 42px;
+}
+.form{
+    width: 27.99vw;
+    height: fit-content;
+    margin: 15px auto;
+    padding: 10px 0;
+    /* border: 1px solid black; */
+}
+.form_elements_flex{
+    display: flex;
+    justify-content: space-between;
+
+}
+.form_elements{
+    margin-bottom: 25px;
+}
+label{
+    font-size: 0.75em;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 5px;
+    line-height: 14px;
+
+}
+input, select{
+    width: 100%;
+    height: 5.54vh;
+    padding: 10px 15px;
+    font-size: 0.875em;
+    border: 0.5px solid #789BCD;
+}
+.first_element, .last_element{
+    width: 46.5%;
+}
+
+
+input:focus, select:focus{
+    outline: 0.5px solid #1DAE8C;
+}
+
+input::placeholder{
+    font-size: 0.875em;
+    line-height: 20px;
+}
+
+.btn{
+    display: block;
+    width: 18.03vw;
+    height: 5.26vh;
+    font-family: 'Aviano';
+    text-align: center;
+    font-size: 1em;
+    padding: 8px;
+    font-weight: bold;
+    line-height: 24px;
+    text-transform: uppercase;
+    margin: 45px auto 20px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.login_btn{
+    background: #1A272A;    
+}
+
+.create_btn{
+    background: #1DAE8C;
+}
+.no_question{
+    font-size: 1em;
+    text-align: center;
+}

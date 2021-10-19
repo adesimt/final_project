@@ -1,0 +1,80 @@
+.background{
+    max-width: 100vw;
+    height: 106.37vh;
+    overflow-y: hidden;
+    position: relative;
+    /* background: transparent url('./front-page-img.png') 0% 0% no-repeat padding-box; */
+  }
+  .background img{
+    width: 100%;
+  }
+  
+ .content{
+      width: 80%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 9.1vw;
+      
+  }
+
+  .navbar{
+    position: absolute;
+    top: 42px;
+    left: 0;
+    width: 100%;
+    height: 12.46vh;
+    display: flex;
+    justify-content: space-between;
+  }
+  .logo{
+    border: 1px solid #F7DD95;
+    width: 10vw;
+    height: 5vh;
+    cursor: pointer;
+  }
+  .nav-elements{
+    font-family: 'Aviano';
+    color: #F7DD95;
+  
+  }
+  
+  .nav-elements ul{
+    display: flex;
+    list-style: none;
+  }
+  .nav-elements ul a  {
+    text-decoration: none;
+    color: #F7DD95;
+
+  }
+
+  .nav-elements ul li{
+    margin-left: 25px;
+    font-size: 1em;
+    line-height: 24px;
+    font-weight: bold;
+  }
+
+  .train-btn{
+      font-family: 'Aviano';
+      font-size: 1.5em;
+      line-height: 24px;
+      text-align: center;
+      padding: 5px 0;
+      position: absolute;
+      display: block;
+      width: 21.80vw;
+      height: 5.54vh;
+      border: 1px solid #F7DD95;
+      top: 313px;
+      right: 0;
+      cursor: pointer;
+  }
+  .trainee{
+      background: #F7DD95;
+  }
+  .trainer{
+      margin-top: 70px;
+      color: #F7DD95;
+  }
