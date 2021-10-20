@@ -1,12 +1,12 @@
 import './App.css';
-import './components/landing_page/LandingPage.css';
-import LandingPage from './components/landing_page/LandingPage';
+import './pages/landing_page/LandingPage.css';
+import LandingPage from './pages/landing_page/LandingPage';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Login from './components/account/Login';
-import ClientSignup from './components/account/Signup_client';
-import TrainerSignup from './components/account/Signup_trainer';
-import OptionPage from './components/profile/OptionPage';
-import Dashboard from './components/dashboard/Dashboard';
+import Login from './pages/account/Login';
+import ClientSignup from './pages/account/Signup_client';
+import TrainerSignup from './pages/account/Signup_trainer';
+import OptionPage from './pages/profile/OptionPage';
+import Dashboard from './pages/dashboard/Dashboard';
 
 
 function App() {
@@ -37,7 +37,7 @@ function App() {
           <Route path="/dashboard">            
             <Dashboard />
           </Route>
-          
+
         </Switch>
       </div>
     </Router>
