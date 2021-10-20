@@ -2,27 +2,27 @@ export const ClientNavItems = [
 
     {
         title: 'Home',
-        path: '/dashboard',
+        path: '/dashboard/dashboard',
         cName: 'nav_links home'
     },
     {
         title: 'Profile',
-        path: '/profile',
+        path: '/dashboard/profile',
         cName: 'nav_links profile'
     },
     {
         title: 'My Schedule',
-        path: '/my-schedule',
+        path: '/dashboard/my-schedule',
         cName: 'nav_links MySchedule'
     },
     {
         title: 'Trainers',
-        path: '/trainers',
+        path: '/dashboard/trainers',
         cName: 'nav_links trainers'
     },
     {
-        title: 'Classees',
-        path: '/classes',
+        title: 'Classes',
+        path: '/dashboard/classes',
         cName: 'nav_links classes'
     },
    
@@ -39,22 +39,22 @@ export const TrainerNavItems = [
     },
     {
         title: 'Profile',
-        path: '/profile',
+        path: '/dashboard/profile',
         cName: 'nav_links profile'
     },
     {
         title: 'My Schedule',
-        path: '/my-schedule',
+        path: '/dashboard/my-schedule',
         cName: 'nav_links MySchedule'
     },
     {
         title: 'Clients',
-        path: '/clients',
+        path: '/dashboard/clients',
         cName: 'nav_links clients'
     },
     {
         title: 'Classes',
-        path: '/classes',
+        path: '/dashboard/classes',
         cName: 'nav_links classes'
     },
    

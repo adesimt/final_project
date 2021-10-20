@@ -25,7 +25,7 @@ const LandingPage = () => {
             <img src="/images/front-page-img.png" alt="front-page" />
 
             <div className="content">
-                <div className="navbar">
+                <div className="landing_page_navbar">
                     <Link to="/"><div className="logo">logo</div></Link>
                     <div className="nav-elements">
                         <ul>
