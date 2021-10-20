@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './components/account/Login';
 import ClientSignup from './components/account/Signup_client';
 import TrainerSignup from './components/account/Signup_trainer';
+import OptionPage from './components/profile/OptionPage';
 
 
 function App() {
@@ -26,6 +27,10 @@ function App() {
 
           <Route path="/signup-as-a-trainer">            
             <TrainerSignup />
+          </Route>
+
+          <Route path="/options">            
+            <OptionPage />
           </Route>
         </Switch>
       </div>
