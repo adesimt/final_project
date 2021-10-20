@@ -12,9 +12,12 @@ const LandingPage = () => {
     const [dropdown, setDropdown] = useState(false);
 
 
-    //const handleClick = () => setClick(!click);
+    const handleClick = () => {
+        //setClick(true)
+        setDropdown(!dropdown)
+    };
 
-    const onClick = () => setDropdown(true);
+    
 
     return ( 
 
@@ -27,7 +30,7 @@ const LandingPage = () => {
                     <div className="nav-elements">
                         <ul>
                             <Link to="/login"><li>login</li></Link>
-                            <li onClick={onClick}>create account {dropdown && <SignupDropdown />}</li>
+                            <li onClick={handleClick}>create account</li>
                         </ul>
                         
                     </div>
@@ -36,10 +39,15 @@ const LandingPage = () => {
                 
 
 
-                <div className="train-btn trainee">i want to train</div>
-                <div className="train-btn trainer">i want to be trained</div>
+                <Link to="/signup-as-a-trainer"><div className="train-btn trainee">i want to train</div></Link>
+                <Link to="/signup-as-a-client"><div className="train-btn trainer">i want to be trained</div></Link>
+
             </div>
 
+        
+            {dropdown && <SignupDropdown />}
+            
+            
         </div>
      );
 }
