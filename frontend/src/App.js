@@ -6,6 +6,7 @@ import Login from './components/account/Login';
 import ClientSignup from './components/account/Signup_client';
 import TrainerSignup from './components/account/Signup_trainer';
 import OptionPage from './components/profile/OptionPage';
+import Dashboard from './components/dashboard/Dashboard';
 
 
 function App() {
@@ -32,6 +33,11 @@ function App() {
           <Route path="/options">            
             <OptionPage />
           </Route>
+
+          <Route path="/dashboard">            
+            <Dashboard />
+          </Route>
+          
         </Switch>
       </div>
     </Router>
