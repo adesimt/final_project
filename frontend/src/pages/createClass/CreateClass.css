@@ -1,0 +1,84 @@
+.class_content{
+    font-family: 'Industry';
+    width: 72%;
+    height: fit-content;
+    position: absolute;
+    top: 20.77vh;
+    left:  10%;
+    padding: 20px 60px 60px 0;
+    border: 1px solid black;
+    
+}
+.heading_class{
+    font-size: 2.25em;
+    line-height: 44px;
+    margin-bottom: 60px;
+    color: #1DAE8C;
+    font-weight: 600;
+} 
+.entity_row{
+    margin-top: 40px;
+}
+
+.row_label{
+    font-family: 'Aviano';
+    color: #6E6F72;
+    font-size: 1.25em;
+    font-weight: 600;
+}
+.row_btns{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.all_btn{
+    background:#CBD0D6 0% 0% no-repeat;
+    color: #1A272A;
+}
+
+.all_btn:hover{
+    opacity: 0.7;
+}
+
+.all_btn.active{
+    background: #1A272A 0% 0% no-repeat;
+    color: #ffffff;
+}
+.other_btn{
+    width: fit-content;
+    height: 40px;
+    padding: 11px 32px;
+    border-radius: 8px;
+    margin: 15px 25px 0 0;
+    cursor: pointer;
+    display: flex;    
+}
+.plus_icon{
+    margin: 0 0 0 8px;
+    font-size: 1.25em;
+}
+.more{
+    margin: 10px 0 0 0;
+}
+.more input{
+    width: 20vw;
+    height: 30px;
+    background: transparent;
+}
+.more p{
+    font-size: 0.875em;
+    padding-top: 5px;
+}
+.row_text{
+    margin-top: 20px;
+}
+.row_text textarea{
+    background: transparent;
+    padding: 15px 0 0 20px;
+    border: 0.5px solid #789BCD;
+}
+
+.row_text textarea::placeholder{
+    font-family: 'Industry';
+    font-size: 1em;
+}

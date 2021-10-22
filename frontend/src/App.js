@@ -8,6 +8,7 @@ import TrainerSignup from './pages/account/Signup_trainer';
 import OptionPage from './pages/profile/OptionPage';
 import ClientDashboard from './pages/dashboard/ClientDashboard';
 import TrainerDashboard from './pages/trainers/trainerDashboard/TrainerDashboard';
+import CreateClass from './pages/createClass/CreateClass';
 
 
 function App() {
@@ -42,6 +43,10 @@ function App() {
 
           <Route path="/trainer-dashboard">            
             <TrainerDashboard />
+          </Route>
+
+          <Route path="/create-a-class">            
+            <CreateClass />
           </Route>
 
         </Switch>
