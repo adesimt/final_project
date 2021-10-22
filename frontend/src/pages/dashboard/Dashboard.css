@@ -2,3 +2,70 @@
     width: 100%;
     height: 100%;
 }
+
+.dashboard_content{
+    width: 90%;
+    height: fit-content;
+    position: absolute;
+    top: 8.31vh;
+    left:  10%;
+    padding: 20px 60px 60px 20px;
+}
+.hello_name{
+    font-family: 'Aviano';
+    margin: 80px 0 100px 0;
+    font-size: 1.5em;
+    line-height: 2em;
+    color: #1a272a;
+}
+.new_class{
+    font-family: Aviano;
+    background: #1DAE8C 0% 0% no-repeat;
+    width: 210px;
+    height: 40px;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    left: 1100px;
+    float: right;
+    cursor: pointer;
+}
+/* .all_classes_container{
+    width: 100%;
+    height: 100%;
+} */
+
+.row{
+    font-family: 'Industry';
+    width: 100%;
+    margin-top: 80px;
+}
+
+.row_title{
+    display: flex;
+    justify-content: space-between;
+}
+
+.row_title_left, .row_title_right{
+    display: flex;
+}
+.row_title_left, .row_title_right p{
+    color: #1a272a;
+    font-weight: 700;
+    font-size: 1em;
+}
+
+.icon{
+    color: #1a272a;
+    font-weight: 700;
+    display: block;
+    margin: 3px 0 0 8px;
+}
+
+
+.row_content{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+

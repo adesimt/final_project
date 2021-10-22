@@ -1,11 +1,12 @@
 .navbar{
     top: 8.31vh;
     left: 0px;
-    width: 10vw;
+    width: 10%;
     height: 100vh;
     background: #E4E4E4 0% 0% no-repeat padding-box;
     box-shadow: 0px 0px 5px #1DAE8C;
     opacity: 1;
+    position: fixed;
 }
 .navbar ul {
     width: 100%;

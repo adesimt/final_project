@@ -6,7 +6,8 @@ import Login from './pages/account/Login';
 import ClientSignup from './pages/account/Signup_client';
 import TrainerSignup from './pages/account/Signup_trainer';
 import OptionPage from './pages/profile/OptionPage';
-import Dashboard from './pages/dashboard/Dashboard';
+import ClientDashboard from './pages/dashboard/ClientDashboard';
+import TrainerDashboard from './pages/trainers/trainerDashboard/TrainerDashboard';
 
 
 function App() {
@@ -35,8 +36,12 @@ function App() {
             <OptionPage />
           </Route>
 
-          <Route path="/dashboard">            
-            <Dashboard />
+          <Route path="/client-dashboard">            
+            <ClientDashboard />
+          </Route>
+
+          <Route path="/trainer-dashboard">            
+            <TrainerDashboard />
           </Route>
 
         </Switch>
