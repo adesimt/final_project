@@ -3,7 +3,9 @@ import Header from "../../components/Header";
 import './CreateClass.css';
 import { Levels, Formats, Types } from "./ClassEntities";
 import { HiPlus } from 'react-icons/hi';
+import { Options } from './CheckboxOptions';
 import { useState } from 'react';
+import Checkbox from "../../components/navbar/Checkbox";
 
 const CreateClass = () => {
 
@@ -78,8 +80,11 @@ const CreateClass = () => {
 
                         <div className="entity_row">
                             <div className="row_label">Day/s</div>
-                            <div className="row_text">
-                                
+                            <div className="row_boxes">
+
+                                { Options.map((item, index) => {
+                                   return <Checkbox day={item.day} key={index} />
+                                })}
                             </div>
                         </div>
 

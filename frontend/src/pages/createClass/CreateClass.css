@@ -69,7 +69,7 @@
     font-size: 0.875em;
     padding-top: 5px;
 }
-.row_text{
+.row_text, .row_boxes{
     margin-top: 20px;
 }
 .row_text textarea{
@@ -81,4 +81,17 @@
 .row_text textarea::placeholder{
     font-family: 'Industry';
     font-size: 1em;
+}
+.checkbox_container{
+    border: 1px solid black;
+}
+.row_boxes{
+    display: flex;
+}
+[type=checkbox]{
+    width: 25px;
+    height: 20px;
+    margin: 5px 0 0 0;
+    border: 0.5px solid #789BCD;
+    background-color: transparent;
 }
