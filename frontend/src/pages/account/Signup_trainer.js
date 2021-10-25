@@ -1,4 +1,4 @@
-import { states } from './states';
+import { states } from '../../files/states';
 import { Link } from 'react-router-dom';
 
 

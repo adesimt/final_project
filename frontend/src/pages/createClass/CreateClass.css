@@ -34,10 +34,11 @@
 .all_btn{
     background:#CBD0D6 0% 0% no-repeat;
     color: #1A272A;
+    font-weight: 500;
 }
 
 .all_btn:hover{
-    opacity: 0.7;
+    background: #bfc0c2;
 }
 
 .all_btn.active{
@@ -69,7 +70,7 @@
     font-size: 0.875em;
     padding-top: 5px;
 }
-.row_text, .row_boxes{
+.row_text, .row_boxes, .row_equipment{
     margin-top: 20px;
 }
 .row_text textarea{
@@ -83,7 +84,7 @@
     font-size: 1em;
 }
 .checkbox_container{
-    border: 1px solid black;
+    margin-right: 10px;
 }
 .row_boxes{
     display: flex;
@@ -93,5 +94,19 @@
     height: 20px;
     margin: 5px 0 0 0;
     border: 0.5px solid #789BCD;
-    background-color: transparent;
+}
+.checkbox_label{
+    font-weight: 500;
+    font-size: 1em;
+}
+
+.time_slots{
+    display: flex;
+    justify-content: space-between;
+    width: 490px;
+    border: 1px solid black;
+}
+
+.add_class_btn{
+    margin: 100px 0 60px 400px;
 }

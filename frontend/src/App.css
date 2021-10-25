@@ -1,3 +1,26 @@
+.header .logout{
+    color: #ffffff;
+    font-family: 'Aviano';
+    text-align: 'right';
+    padding: 20px 70px 10px 0;
+    cursor: pointer;
+    width: 5%;
+    float: right;
+
+}
+
 .logout:hover{
+    
     text-decoration: underline;
+}
+
+.equipment_input{
+    margin-bottom: 10px;
+    width: 490px;
+    background: transparent;
+    display: block;
+}
+.equipment_input::placeholder{
+    font-family: 'Industry';
+    font-size: 0.875em;
 }

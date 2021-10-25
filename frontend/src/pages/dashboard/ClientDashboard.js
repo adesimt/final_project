@@ -5,7 +5,7 @@ import './Dashboard.css';
 import Header from "../../components/Header";
 import Navbar from '../../components/navbar/Navbar';
 import Class from '../../components/class/Class'
-import {ClientNavItems} from '../../components/navbar/NavItems';
+import {ClientNavItems} from '../../files/NavItems';
 
 const Dashboard = () => {
 

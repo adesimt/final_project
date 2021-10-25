@@ -10,21 +10,15 @@ const Header = () => {
         opacity: '1',
         position: 'fixed',
         zIndex: '4',
+        padding: '5px 80px 10px 0'
         
     };
 
-    const logoutStyles = {
-        color: '#ffffff',
-        fontFamily: 'Aviano',
-        textAlign: 'right',
-        padding: '20px 70px 10px 0',
-        cursor: 'pointer'
-    }
     
     return ( 
 
         <div className="header" style={styles}>
-            <div className="logout" style={logoutStyles}>logout</div>        
+            <div className="logout">logout</div>        
         </div>
      );
 }

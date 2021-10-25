@@ -5,8 +5,9 @@ import '../../dashboard/Dashboard.css';
 import Header from '../../../components/Header';
 import Navbar from '../../../components/navbar/Navbar';
 import Class from '../../../components/class/Class';
-import { TrainerNavItems } from '../../../components/navbar/NavItems';
+import { TrainerNavItems } from '../../../files/NavItems';
 import { Link } from 'react-router-dom';
+import FlatButton from '../../../components/navbar/FlatButton';
 
 const Dashboard = () => {
 
@@ -23,7 +24,7 @@ const Dashboard = () => {
                 <Navbar navItems = {TrainerNavItems} />
                 <div className="dashboard_content">
                     <h2 className="hello_name">Hello, First Name!</h2>
-                    <Link to="/create-a-class"><div className="new_class">Create a new class</div></Link>
+                    <Link to="/create-a-class"><FlatButton name='Create a new class' cName='new_class_btn'/></Link>
                     <br/>
                     <br/>
                     <div className="all_classes_container">           
