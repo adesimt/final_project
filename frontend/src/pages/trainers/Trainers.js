@@ -3,7 +3,6 @@ import Navbar from '../../components/navbar/Navbar';
 import Trainer from '../../components/trainer/Trainer';
 import { ClientNavItems } from '../../files/NavItems';
 // import { Types } from '../../files/ClassEntities';
-import '../../components/trainer/Trainer.css';
 
 
 

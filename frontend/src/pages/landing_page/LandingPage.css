@@ -107,3 +107,42 @@
     border: 1px solid white;
 
   } */
+
+  .not_found_container{
+    width: 60%;
+    height: fit-content;
+    padding: 20px;
+    position: absolute;
+    top: 25%;
+    left: 22%;
+  }
+
+  .code_404{
+    font-family: 'Aviano';
+    font-size: 5.1em;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .not_found{
+    font-family: 'Industry';
+    font-size: 2.25em;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .not_found_container a{
+    text-decoration: none;
+  }
+  .back_home{
+    color: #ffffff;
+    background: #789BCD;
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 20px;
+  }

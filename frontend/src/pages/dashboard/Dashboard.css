@@ -96,7 +96,7 @@
     height: fit-content;
     border: 1px solid black;
 }
-.trainers_container{
+.trainers_container, .clients_container{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;

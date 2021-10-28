@@ -10,6 +10,8 @@ import ClientDashboard from './pages/dashboard/ClientDashboard';
 import TrainerDashboard from './pages/trainers/trainerDashboard/TrainerDashboard';
 import CreateClass from './pages/createClass/CreateClass';
 import Trainers from './pages/trainers/Trainers';
+import Clients from './pages/trainers/Clients';
+import PageNotFound from './pages/landing_page/PageNotFound';
 
 
 function App() {
@@ -52,6 +54,14 @@ function App() {
 
           <Route path="/client-dashboard/trainers">        
             <Trainers />
+          </Route>
+
+          <Route path="/trainer-dashboard/clients">        
+            <Clients />
+          </Route>
+
+          <Route path="*">        
+            <PageNotFound />
           </Route>
 
         </Switch>
