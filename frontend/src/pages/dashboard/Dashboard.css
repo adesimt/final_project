@@ -9,7 +9,12 @@
     position: absolute;
     top: 8.31vh;
     left:  10%;
+}
+
+.content_container{
+    width: 100%;
     padding: 20px 60px 60px 20px;
+
 }
 .hello_name{
     font-family: 'Aviano';
@@ -77,4 +82,22 @@
     justify-content: space-between;
     margin-top: 25px;
 }
+.filters_container{
+    width: 99.8%;
+    height: 100px;
+    background: #D9DADC 0% 0% no-repeat padding-box;
+    margin: 0 0 20px 2px;
+    padding: 32px 20px;
+    display: flex;
 
+}
+.filter_elements{
+    width: 50%;
+    height: fit-content;
+    border: 1px solid black;
+}
+.trainers_container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}

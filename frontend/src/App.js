@@ -9,6 +9,7 @@ import OptionPage from './pages/profile/OptionPage';
 import ClientDashboard from './pages/dashboard/ClientDashboard';
 import TrainerDashboard from './pages/trainers/trainerDashboard/TrainerDashboard';
 import CreateClass from './pages/createClass/CreateClass';
+import Trainers from './pages/trainers/Trainers';
 
 
 function App() {
@@ -37,16 +38,20 @@ function App() {
             <OptionPage />
           </Route>
 
-          <Route path="/client-dashboard">            
+          <Route exact path="/client-dashboard">            
             <ClientDashboard />
           </Route>
 
-          <Route path="/trainer-dashboard">            
+          <Route exact path="/trainer-dashboard">            
             <TrainerDashboard />
           </Route>
 
           <Route path="/create-a-class">            
             <CreateClass />
+          </Route>
+
+          <Route path="/client-dashboard/trainers">        
+            <Trainers />
           </Route>
 
         </Switch>

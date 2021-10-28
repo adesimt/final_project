@@ -103,3 +103,16 @@ input::placeholder{
     font-size: 1em;
     text-align: center;
 }
+
+.form a{
+    text-decoration: none;
+}
+
+.form_elements span{
+    font-size: 0.875em;
+    color: #e10321;
+}
+
+input.error{
+    outline: 0.5px solid #e10321;
+}

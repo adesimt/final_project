@@ -9,7 +9,7 @@ const Header = () => {
         background: 'transparent linear-gradient(90deg, #1DAE8C 0%, #1A272A 100%) 0% 0% no-repeat padding-box',
         opacity: '1',
         position: 'fixed',
-        zIndex: '4',
+        zIndex: '10',
         padding: '5px 80px 10px 0'
         
     };
