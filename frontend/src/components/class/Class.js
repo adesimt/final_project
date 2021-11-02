@@ -15,11 +15,11 @@ const Class = () => {
     return (  
 
         <div className="class_container" style={background_personal}>
-            <div className="class_level grid1">Beginners</div>
-            <div className="class_name grid2">Yoga Training</div>
-            <div className="trainer_name grid3">By Skala Dudley</div>
-            <div className="class_format grid4">Personal training</div>
-            <div className="schedule grid5">9:00 am - 10:00 am <p>Mon, Fri</p></div>
+            <div className="class_level">Beginners</div>
+            <div className="class_name">Yoga Training</div>
+            <div className="trainer_name">By Skala Dudley</div>
+            <div className="class_format">Personal training</div>
+            <div className="schedule"><p className="schedule_day">Mon, Fri;</p><p className="schedule_time">9:00 am - 10:00 am</p></div>
 
         </div>
     );
