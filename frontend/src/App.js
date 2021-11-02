@@ -5,13 +5,16 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Login from './pages/account/Login';
 import ClientSignup from './pages/account/Signup_client';
 import TrainerSignup from './pages/account/Signup_trainer';
-import OptionPage from './pages/profile/OptionPage';
-import ClientDashboard from './pages/dashboard/ClientDashboard';
+import ClientDashboard from './pages/clients/ClientDashboard';
 import TrainerDashboard from './pages/trainers/trainerDashboard/TrainerDashboard';
 import CreateClass from './pages/createClass/CreateClass';
-import Trainers from './pages/trainers/Trainers';
+import Trainers from './pages/clients/Trainers';
 import Clients from './pages/trainers/Clients';
 import PageNotFound from './pages/landing_page/PageNotFound';
+import TrainerClasses from './pages/trainers/classes/Classes';
+import ClientClasses from './pages/clients/classes/Classes';
+import TrainerProfile from './pages/trainers/trainerProfile/TrainerProfile';
+import ClientProfile from './pages/clients/clientProfile/ClientProfile';
 
 
 function App() {
@@ -36,10 +39,6 @@ function App() {
             <TrainerSignup />
           </Route>
 
-          <Route path="/options">            
-            <OptionPage />
-          </Route>
-
           <Route exact path="/client-dashboard">            
             <ClientDashboard />
           </Route>
@@ -56,8 +55,24 @@ function App() {
             <Trainers />
           </Route>
 
+          <Route path="/client-dashboard/classes">        
+            <ClientClasses />
+          </Route>
+
+          <Route path="/client-dashboard/profile">        
+            <ClientProfile />
+          </Route>
+
           <Route path="/trainer-dashboard/clients">        
             <Clients />
+          </Route>
+
+          <Route path="/trainer-dashboard/classes">        
+            <TrainerClasses />
+          </Route>
+
+          <Route path="/trainer-dashboard/profile">        
+            <TrainerProfile />
           </Route>
 
           <Route path="*">        

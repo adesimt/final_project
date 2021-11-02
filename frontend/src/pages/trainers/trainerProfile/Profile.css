@@ -1,0 +1,103 @@
+.option_page{
+    width: 100%;
+    height: 80%;
+}
+.logo1{
+    margin-top: 30px;
+}
+
+.container{
+    width: 80%;
+    height: 80%;
+    margin: 50px auto;
+    font-family: 'Industry';
+
+}
+.container h3{
+    font-size: 2.25em;
+    font-weight: 100;
+    text-align: center;
+    line-height: 44px;
+}
+
+.container h2{
+    font-size: 1.5em;
+    font-weight: 100;
+    line-height: 32px;
+    text-align: center;
+    margin: 40px 0;
+}
+.selections{
+    margin: auto;
+    width: fit-content;
+    display: flex;
+}
+.btn_select{
+    font-family: 'Aviano';
+    text-transform: uppercase;
+    width: 6.51vw;
+    height: 5.54vh;
+    color: #fff;
+    text-align: center;
+    padding: 9px;
+    margin-right: 100px;
+    cursor: pointer;
+}
+.yes{
+    background: #1DAE8C;
+    margin-left: 100px;
+}
+.no{
+    background:#E10321;
+}
+
+.profile_info{
+    width: 1000px;
+    height: fit-content;
+    padding: 20px 0;
+    position: absolute;
+    top: 70%;
+    left: 10%;
+    font-family: 'Industry';
+}
+
+.profile_section{
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.profile_Section_title{
+    font-size: 1.5em;
+    font-weight: 500;
+    margin-bottom: 5px;
+
+}
+.dim_para{
+    font-size: 1em;
+}
+.specs_container{
+    display: flex;
+    width: 50vw;
+    flex-wrap: wrap;
+}
+
+.specs{
+    background: #1A272A 0% 0% no-repeat;
+    width: 137px;
+    height: 40px;
+    text-align: center;
+    color: #ffffff;
+    margin: 0 10px 10px 0;
+    padding: 10px 0;
+    border-radius: 20px;
+}
+
+.classes{
+    background: transparent linear-gradient(180deg, #789BCD 0%, #CBD0D6 100%) 0% 0% no-repeat;
+    width: 977px;
+    height: 80px;
+    margin-bottom: 5px;
+    font-size: 1.275em;
+    padding: 25px 20px;
+    font-weight: 500;
+}

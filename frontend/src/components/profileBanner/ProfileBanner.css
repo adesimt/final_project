@@ -1,0 +1,108 @@
+.banner{
+    background: #1A272A 0% 0% no-repeat padding-box;
+    width: 100%;
+    height: 37.08vh;
+    color: #ffffff;
+    position: absolute;
+    top: 8.31vh;
+    font-family: 'Industry';
+    
+}
+
+.banner_elements{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    width: 80%;
+    height: 100%;
+    position: absolute;
+    left: 10%;
+}
+.profile_pic{
+    grid-column:  1 / 2;
+    grid-row: 1 / 6;
+    position: relative;    
+
+}
+
+.profile_pic img{
+    width: 210px;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 50%;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}
+.profile_name{
+    grid-column:  2 / 3;
+    grid-row: 2 / 3;
+    justify-self: start;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.banner_sidenote{
+    grid-column:  2 / 3;
+    grid-row: 3 / 4;
+}
+
+.banner_sidenote p{
+    font-size: 1em;
+}
+
+.banner_location{
+    grid-column:  2 / 3;
+    grid-row: 4 / 5;
+    display: flex;
+    font-size: 1.125em;
+}
+.banner_location .profile_icon{
+    font-size: 0.75em;
+    margin-top: 4px;
+}
+.banner_location .profile_addr{
+    margin-left: 5px;
+}
+
+.edit_profile{
+    grid-column:  3 / 4;
+    grid-row: 1 / 2;
+    margin: auto;
+    cursor: pointer;
+
+}
+
+.edit_profile:hover{
+    opacity: 0.7;
+    
+}
+
+.edit_line{
+    width: 60px;
+    background: #F7DD95;
+    height: 1px;
+    margin: 2px auto;
+}
+
+.sub_banner_info{
+    background: transparent linear-gradient(180deg, #789BCD 0%, #CBD0D6 100%) 0% 0% no-repeat;
+    width: 410px;
+    height: 80px;
+    padding: 5px 40px;
+    position: absolute;
+    top: 367px;
+    left: 540px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Industry';
+
+}
+.sub_elements{
+    padding: 5px 10px;
+}
+.sub_element_number{
+    font-size: 1.5em;
+    font-weight: 500;
+    margin-left: 20px;
+}

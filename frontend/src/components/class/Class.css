@@ -7,6 +7,8 @@
     grid-template-rows: repeat(5, 1fr);
 }
 
+
+
 .class_level{
     grid-column: 2 / 3;
     grid-row: 1 / 2;
@@ -27,6 +29,7 @@
     font-weight: 600;
     line-height: 40px;
 }
+
 .trainer_name{
     grid-column: 1 / 2;
     grid-row: 3 / 4;
@@ -45,10 +48,63 @@
 .schedule{
     grid-column: 1 / 3;
     grid-row: 5 / 6;
+    display: flex;
+    justify-content: space-between;
+    width: fit-content;
     justify-self: end;
-    color: #E10321;
 }
-.schedule p{
+.schedule .schedule_time{
+    color: #E10321;
+    margin-left: 5px;
+    font-weight: 500;
+}
+
+.class_card_container{
+    width: 400px;
+    height:  35.90vh;
+    padding: 10px 20px 20px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 0.5fr 0.5fr 1fr;
+}
+
+.class_card_format{
+    grid-column: 1 / 3;
+    grid-row: 3 / 4;
+    font-size: 1em;
+    font-weight: 500;
+    line-height: 24px;
+    justify-self: start;
+}
+.class_card_schedule{
+    display: flex;
+    justify-content: space-between;
+    width: fit-content;
+    
+}
+.class_card_schedule_first{
+    grid-column: 1 / 3;
+    grid-row: 4 / 5;
+    justify-self: start;
+}
+.class_card_schedule_second{
+    grid-column: 1 / 3;
+    grid-row: 5 / 6;
+    justify-self: start;
+}
+
+.class_card_schedule .class_card_time{
+    color: #E10321;
+    margin-left: 5px;
+}
+
+.class_card_schedule_first,.class_card_schedule_second p{
     color: #1A272A;
 
+}
+.class_card_btn{
+    grid-column: 1 / 3;
+    grid-row: 6 / 7;
+    margin: 10px auto 0;
+    
 }

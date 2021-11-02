@@ -9,7 +9,7 @@ import Checkbox from "../../components/navbar/Checkbox";
 import TimePicker from 'react-time-picker';
 import { EquipmentFiles } from "../../files/EquimentFile";
 import Equipment from "../../components/Equipment";
-import FlatButton from "../../components/navbar/FlatButton";
+import FlatButton from "../../components/FlatButton";
 
 const CreateClass = () => {
 
