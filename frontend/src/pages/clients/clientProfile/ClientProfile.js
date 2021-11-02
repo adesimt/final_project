@@ -38,7 +38,7 @@ const ClientProfile = () => {
                         <div className="profile_Section_title">Enrolled classes</div>
                         <div className="offer_container">
                             {offeredClasses.map((item, index) => {
-                                return <div className="classes" key={index}>{item}</div>
+                                return <div className="my_classes" key={index}>{item}</div>
                             })}
                         </div>
                         
