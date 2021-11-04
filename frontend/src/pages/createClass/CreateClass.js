@@ -1,11 +1,11 @@
+import { useState } from 'react';
 import Button from "../../components/Button";
 import Header from "../../components/Header";
 import './CreateClass.css';
 import { Levels, Formats, Types } from "../../files/ClassEntities";
 import { HiPlus } from 'react-icons/hi';
-import { Options } from '../../files/CheckboxOptions';
-import { useState } from 'react';
-import Checkbox from "../../components/navbar/Checkbox";
+import { daysOption } from '../../files/CheckboxOptions';
+import Checkbox from "../../components/Checkbox";
 import TimePicker from 'react-time-picker';
 import { EquipmentFiles } from "../../files/EquimentFile";
 import Equipment from "../../components/Equipment";
@@ -13,11 +13,89 @@ import FlatButton from "../../components/FlatButton";
 
 const CreateClass = () => {
 
+
     const [show, setShow] = useState(false);
+    const [levels, setLevels] = useState(Levels);
+    const [formats, setFormats] = useState(Formats);
+    const [types, setTypes] = useState(Types);
+    const [options, setOptions] = useState(daysOption);
+    const [isChecked, setIsChecked] = useState(false);
+    
+    
 
     const showMore = () => {
         setShow(true)
     }
+
+    
+    //for levels
+    function makeActiveLevels(index){
+        setLevels({...levels, activeBtn: levels.allLevels[index]});
+        console.log(levels.allLevels[index].name);
+    }
+
+    const showActiveLevels = (index) => {
+        if(levels.allLevels[index] === levels.activeBtn){
+            return "all_btn active";
+        }else{
+            return "all_btn";
+        }
+    }
+    // for levels
+
+
+    //for formats
+    function makeActiveFormats(index){
+        setFormats({...formats, activeBtn: formats.allFormats[index]});
+        console.log(formats.allFormats[index].name);
+    }
+
+    const showActiveFormats = (index) => {
+        if(formats.allFormats[index] === formats.activeBtn){
+            return "all_btn active";
+        }else{
+            return "all_btn";
+        }
+    }
+    // for formats
+
+
+    //for types
+    function makeActiveTypes(index){
+        setTypes({...types, activeBtn: types.allTypes[index]});
+        console.log(types.allTypes[index].name);
+    }
+
+    const showActiveTypes = (index) => {
+        if(types.allTypes[index] === types.activeBtn){
+            return "all_btn active";
+        }else{
+            return "all_btn";
+        }
+    }
+    // for typess
+
+    // for checkbox //
+
+    const makeCheck = (index) => {
+        setOptions({ ...options, activeBox: options.allDays[index]})
+        setIsChecked(!isChecked)
+        if(!isChecked){
+            return console.log(`${options.allDays[index].name} checked`)
+        }else{
+            return console.log(`${options.allDays[index].name} not checked`)
+
+        }
+        
+    }
+
+    // const handleCheck = () =>{
+    //     setIsChecked(!isChecked)
+    //     console.log(isChecked)
+    // }
+
+
+
 
 
 
@@ -35,8 +113,12 @@ const CreateClass = () => {
                         <div className="entity_row">
                             <div className="row_label">Level of competency</div>
                             <div className="row_btns">
-                                {Levels.map((item, index)=>{
-                                   return <Button cName={item.cName} name={item.name} key={index}/>
+                                {levels.allLevels.map((item, index)=>{
+                                   return <Button 
+                                                cName={showActiveLevels(index)}
+                                                name={item.name} 
+                                                click={() => {makeActiveLevels(index)}}
+                                                key={index} />
                                 })}
                             </div>
                         </div>
@@ -44,16 +126,24 @@ const CreateClass = () => {
                         <div className="entity_row">
                             <div className="row_label">Training Format</div>
                             <div className="row_btns">
-                                {Formats.map((item, index)=>{
-                                   return <Button cName={item.cName} name={item.name} key={index}/>
+                                {formats.allFormats.map((item, index)=>{
+                                   return <Button 
+                                            cName={showActiveFormats(index)} 
+                                            name={item.name}
+                                            click={() => {makeActiveFormats(index)}} 
+                                            key={index}/>
                                 })}
                             </div>
                         </div>
                         <div className="entity_row">
                             <div className="row_label">Training Type</div>
                             <div className="row_btns">
-                                {Types.map((item, index)=>{
-                                   return <Button cName={item.cName} name={item.name} key={index}/>
+                                {types.allTypes.map((item, index)=>{
+                                   return <Button 
+                                            cName={showActiveTypes(index)} 
+                                            name={item.name}
+                                            click={() => {makeActiveTypes(index)}} 
+                                            key={index}/>
                                 })}
                             </div>
 
@@ -66,7 +156,8 @@ const CreateClass = () => {
                             
                                 <div className="more">
                                     <p>Type a training type that's not in the list above</p>
-                                    <input type="text" name="more" /><Button cName='all_btn' name='Add'/>
+                                    <input type="text" className="input_more" />
+                                    <Button cName='all_btn' name='Add more type'/>
                                 </div>
                                 : null
                      
@@ -85,9 +176,8 @@ const CreateClass = () => {
                         <div className="entity_row">
                             <div className="row_label">Day/s</div>
                             <div className="row_boxes">
-
-                                { Options.map((item, index) => {
-                                   return <Checkbox day={item.day} key={index} />
+                                { options.allDays.map((item, index) => {
+                                   return <Checkbox day={item.name} key={index} check={() => makeCheck(index)}/>
                                 })}
                             </div>
                         </div>

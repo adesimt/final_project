@@ -1,9 +1,11 @@
-const Checkbox = ({day, cName}) => {
+const Checkbox = ({day, cName, check}) => {
+
+    
     return ( 
         <>
             <div className="checkbox_container">
                 <div className="checkbox_label">{day}</div>
-                <input type="checkbox" name={day} className={cName} />
+                <input type="checkbox" name={day} className={cName} onChange={check}/>
             </div>
         </>
      );

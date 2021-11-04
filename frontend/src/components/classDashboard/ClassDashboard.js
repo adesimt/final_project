@@ -13,6 +13,7 @@ const Dashboard = () => {
         setIsOpen(!isOpen);
     }
 
+    
     return ( 
         <>
             
@@ -22,13 +23,18 @@ const Dashboard = () => {
                     <div className="row_title">
                         <div className="row_title_left"><p>Upcoming events</p> <div className="icon">{isOpen ? <IoIosArrowDown onClick={hideRow}/> : <IoIosArrowUp onClick={hideRow}/>}</div></div>
                         <div className="row_title_right"><p>View all</p> <div className="icon"><CgArrowLongRight /></div></div>
-                    </div>                        
+                    </div> 
+                    {isOpen && 
                     
-                    <div className="row_content">
-                    <Class />
-                    <Class />
-                    <Class />
-                    </div>
+                        <div className="row_content">
+                            <Class />
+                            <Class />
+                            <Class />
+                        </div>
+                    
+                    }                       
+                    
+                    
                 
 
                 </div>

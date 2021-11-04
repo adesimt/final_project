@@ -15,6 +15,7 @@ import TrainerClasses from './pages/trainers/classes/Classes';
 import ClientClasses from './pages/clients/classes/Classes';
 import TrainerProfile from './pages/trainers/trainerProfile/TrainerProfile';
 import ClientProfile from './pages/clients/clientProfile/ClientProfile';
+import Test from '../src/files/Test';
 
 
 function App() {
@@ -73,6 +74,10 @@ function App() {
 
           <Route path="/trainer-dashboard/profile">        
             <TrainerProfile />
+          </Route>
+
+          <Route path="/test">        
+            <Test />
           </Route>
 
           <Route path="*">        
