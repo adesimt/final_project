@@ -11,7 +11,7 @@ const ProfileBanner = () => {
 
                 </div>
                 <div className="profile_name"><h5>Susan Figueroa</h5></div>
-                <div className="banner_sidenote"><p>Every moment is a fresh beginning.</p></div>
+                <div className="banner_sidenote"><p>"Every moment is a fresh beginning."</p></div>
                 <div className="banner_location">
                     <div className="profile_icon"><ImLocation2 /></div>
                     <div className="profile_addr">Minneapolis, MN</div>
