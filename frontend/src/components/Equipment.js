@@ -1,12 +1,21 @@
-const Equipment = ({ name, cName, placeholder }) => {
+
+const Equipment = ({cName, name, clear, placeholder, change}) => {
     return ( 
 
         <>
-            <input 
-                type="text" 
-                name={name} 
-                className={cName}
-                placeholder={placeholder} />
+            <div className="input_equipment">
+                <input 
+                    type="text" 
+                    name= {name}
+                    className={cName}
+                    value={name.value}
+                    placeholder={placeholder}
+                    onChange={change}
+
+                    
+                />
+                <div className="clear_btn" onClick={clear}>clear</div>
+            </div>
         </>
      );
 }

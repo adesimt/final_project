@@ -6,7 +6,7 @@ export const daysOption = {
 
         {
             name: 'Mon',
-            cName: 'mon'
+            cName: 'mon',
         },
         {
             name: 'Tue',

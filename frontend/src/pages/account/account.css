@@ -61,6 +61,7 @@ input, select{
     padding: 10px 15px;
     font-size: 0.875em;
     border: 0.5px solid #789BCD;
+    z-index: 2;
 }
 .first_element, .last_element{
     width: 46.5%;

@@ -4,12 +4,12 @@ import Header from "../../components/Header";
 import './CreateClass.css';
 import { Levels, Formats, Types } from "../../files/ClassEntities";
 import { HiPlus } from 'react-icons/hi';
-import { daysOption } from '../../files/CheckboxOptions';
-import Checkbox from "../../components/Checkbox";
-import TimePicker from 'react-time-picker';
-import { EquipmentFiles } from "../../files/EquimentFile";
+//import { EquipmentFiles } from "../../files/EquimentFile";
 import Equipment from "../../components/Equipment";
 import FlatButton from "../../components/FlatButton";
+import { TimePickerComponent} from '@syncfusion/ej2-react-calendars';
+import { CheckBoxComponent } from '@syncfusion/ej2-react-buttons';
+
 
 const CreateClass = () => {
 
@@ -18,8 +18,6 @@ const CreateClass = () => {
     const [levels, setLevels] = useState(Levels);
     const [formats, setFormats] = useState(Formats);
     const [types, setTypes] = useState(Types);
-    const [options, setOptions] = useState(daysOption);
-    const [isChecked, setIsChecked] = useState(false);
     
     
 
@@ -77,26 +75,66 @@ const CreateClass = () => {
 
     // for checkbox //
 
-    const makeCheck = (index) => {
-        setOptions({ ...options, activeBox: options.allDays[index]})
-        setIsChecked(!isChecked)
-        if(!isChecked){
-            return console.log(`${options.allDays[index].name} checked`)
+    const handleCheck = (e) => {
+        const value = e.target.value;
+        if(e.target.checked){
+            console.log(`${value} is checked`);
         }else{
-            return console.log(`${options.allDays[index].name} not checked`)
-
+            console.log(`${value} is not checked`);
         }
-        
     }
 
-    // const handleCheck = () =>{
-    //     setIsChecked(!isChecked)
-    //     console.log(isChecked)
-    // }
+
+    // timepicker
+    //const timeValue = new Date("");
+
+    const [startTime, setStartTime] = useState("");
+    const [endTime, setEndTime] = useState("");
+
+    const handleStartTime = (e) => {
+        const newValue = e.target.value
+        setStartTime(newValue);
+        console.log(newValue.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+    }
+
+    const handleEndTime = (e) => {
+        const newValue = e.target.value
+        setEndTime(newValue);
+        console.log(newValue.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+    }
+
+    
+//
 
 
+    const [equipments, setEquipments] = useState([
+        { equipmentName: ""},
+        { equipmentName: ""}
+    ]);
+    
 
+    const handleChange = (e, index) => {
+        const { name, value } = e.target;
+        const values = [...equipments];
+        values[index][name] = value;
+        setEquipments(values);
+    }
 
+    const handleMore = () => {
+        setEquipments([...equipments, { equipmentName:""}])
+
+    }
+
+    const handleClick = () => {
+        const newValue = JSON.stringify(equipments)
+        console.log(newValue)
+
+    }
+
+    const clearInput = () => {
+        setEquipments("")
+        
+    }
 
 
 
@@ -176,9 +214,34 @@ const CreateClass = () => {
                         <div className="entity_row">
                             <div className="row_label">Day/s</div>
                             <div className="row_boxes">
-                                { options.allDays.map((item, index) => {
-                                   return <Checkbox day={item.name} key={index} check={() => makeCheck(index)}/>
-                                })}
+                                <div className="checkbox_container">
+                                    <div className="checkbox_label">Mon</div>
+                                    <CheckBoxComponent value="Mon" onChange={handleCheck}/>
+                                </div>
+                                <div className="checkbox_container">
+                                    <div className="checkbox_label">Tue</div>
+                                    <CheckBoxComponent value="Tue" onChange={handleCheck}/>
+                                </div>
+                                <div className="checkbox_container">
+                                    <div className="checkbox_label">Wed</div>
+                                    <CheckBoxComponent value="Wed" onChange={handleCheck}/>
+                                </div>
+                                <div className="checkbox_container">
+                                    <div className="checkbox_label">Thu</div>
+                                    <CheckBoxComponent value="Thu" onChange={handleCheck}/>
+                                </div>
+                                <div className="checkbox_container">
+                                    <div className="checkbox_label">Fri</div>
+                                    <CheckBoxComponent value="Fri" onChange={handleCheck}/>
+                                </div>
+                                <div className="checkbox_container">
+                                    <div className="checkbox_label">Sat</div>
+                                    <CheckBoxComponent value="Sat" onChange={handleCheck}/>
+                                </div>
+                                <div className="checkbox_container">
+                                    <div className="checkbox_label">Sun</div>
+                                    <CheckBoxComponent value="Sun" onChange={handleCheck}/>
+                                </div>
                             </div>
                         </div>
 
@@ -188,7 +251,15 @@ const CreateClass = () => {
 
                                     <div className="row_label">Start time</div>
                                     <div className="row_text">
-                                        <TimePicker />
+                                        <TimePickerComponent 
+                                            placeholder="Select a start time"
+                                            value={startTime}
+                                            step={15}
+                                            onChange ={handleStartTime}
+                                                                                          
+                                            >
+
+                                        </TimePickerComponent>
                                     </div>
 
                                 </div>
@@ -198,7 +269,15 @@ const CreateClass = () => {
                                     <div className="row_label">End time</div>
                                     <div className="row_text">
                                         
-                                        <TimePicker />
+                                        <TimePickerComponent 
+                                            placeholder="Select an end time"
+                                            value={endTime}
+                                            step={15}
+                                            onChange ={handleEndTime}
+                                            
+                                            >
+                                            
+                                        </TimePickerComponent>
                                     </div>
 
                                 </div>
@@ -212,16 +291,26 @@ const CreateClass = () => {
                             <div className="row_label">Exercise equipment needed</div>
                             <div className="row_equipment">
 
-                                { EquipmentFiles.map((item, index) => {
-                                   return <Equipment name={item.name} cName={item.cName} placeholder={item.placeholder} key={index}/>
-                                })}
-
-
+                                { equipments.map((equipment, index) => (
+                                    <Equipment 
+                                        name={`equipment${index + 1}`}
+                                        cName='equipment_input' 
+                                        key={index}
+                                        value={equipment.equipmentName}
+                                        placeholder={`Equipment ${index + 1}`}
+                                        change={(e) => handleChange(e, index)}
+                                        clear={clearInput}
+                                    />
+                                ))}
                             </div>
 
-                            <div className="other_btn all_btn" onClick={showMore}>
+                            <div className="other_btn all_btn" onClick={handleMore}>
                                 <div className="more_options">More</div>
                                 <div className="plus_icon"><HiPlus /></div>
+                            </div>
+                            <div className="other_btn all_btn" onClick={handleClick}>
+                                <div className="more_options">show</div>
+                                
                             </div>
                         </div>
 

@@ -1,6 +1,6 @@
+
 const Checkbox = ({day, cName, check}) => {
 
-    
     return ( 
         <>
             <div className="checkbox_container">

@@ -1,3 +1,6 @@
+@import url("https://cdn.syncfusion.com/ej2/material.css");
+
+
 .class_content{
     font-family: 'Industry';
     width: 72%;
@@ -108,7 +111,6 @@
     display: flex;
     justify-content: space-between;
     width: 490px;
-    border: 1px solid black;
 }
 
 .add_class_btn{
@@ -121,3 +123,31 @@
 .content_container a{
     text-decoration: none;
 }
+
+.input_equipment{
+    width: 55.65vw;
+    position: relative;
+    height: 5.8vh;
+    margin-bottom: 10px;
+    z-index: 2;
+}
+
+.clear_btn{
+    width: fit-content;
+    padding: 10px 10px;
+    text-align: center;
+    color: #E10321;
+    background: #CBD0D6;
+    height: 5.54vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    z-index: 0;
+    
+}
+
+.clear_btn:hover{
+    opacity: 0.6;
+}
+

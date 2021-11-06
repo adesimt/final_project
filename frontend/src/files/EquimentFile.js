@@ -1,27 +1,27 @@
 export const EquipmentFiles = [
 
     {
-        name: 'equipment1',
+        name: '',
         placeholder: 'Equipment 1',
         cName: 'equipment_input'
     },
     {
-        name: 'equipment2',
+        name: '',
         placeholder: 'Equipment 2',
         cName: 'equipment_input'
     },
     {
-        name: 'equipment3',
+        name: '',
         placeholder: 'Equipment 3',
         cName: 'equipment_input'
     },
     {
-        name: 'equipment4',
+        name: '',
         placeholder: 'Equipment 4',
         cName: 'equipment_input'
     },
     {
-        name: 'equipment5',
+        name: '',
         placeholder: 'Equipment 5',
         cName: 'equipment_input'
     }
