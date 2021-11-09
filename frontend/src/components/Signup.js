@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import validations  from '../files/ValidateFile';
+import { useEffect } from 'react';
+import { useMemo } from 'react';
 
 
 
@@ -13,17 +15,34 @@ const TrainerSignup = ({states}) => {
     const [password, setPassword] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
 
-    const values = {firstName, lastName, email, password, city, state};
+    const allValues = useMemo(() => {
+        const values = {firstName, lastName, email, password, city, state};
+        return values
+
+    }, [firstName, lastName, email, password, city, state]);
     const [errors, setErrors] = useState({});
 
 
+
     const handleSubmit = e => {
-        e.preventDefault();
-        setErrors(validations(values));
-        console.log(values);
+            e.preventDefault();
+            if(errors){
+                setErrors(validations(allValues));
+
+            }
+            setIsSubmitted(true);        
+        
     }
+
+    useEffect(() => {
+        if(Object.keys(errors).length === 0 && isSubmitted){
+            setIsSubmitted(true);
+            console.log(allValues);
+        }
+    }, [allValues, errors, isSubmitted])
     
     // const handleBlur = e => {
         
