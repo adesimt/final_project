@@ -1,14 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from "../../components/Button";
 import Header from "../../components/Header";
 import './CreateClass.css';
 import { Levels, Formats, Types } from "../../files/ClassEntities";
 import { HiPlus } from 'react-icons/hi';
 //import { EquipmentFiles } from "../../files/EquimentFile";
-import Equipment from "../../components/Equipment";
 import FlatButton from "../../components/FlatButton";
 import { TimePickerComponent} from '@syncfusion/ej2-react-calendars';
 import { CheckBoxComponent } from '@syncfusion/ej2-react-buttons';
+import ItemForm from '../../components/addItems/ItemForm';
+import ItemList from '../../components/addItems/ItemList';
+
+
+const LOCAL_STORAGE_KEY = "equipments";
 
 
 const CreateClass = () => {
@@ -104,37 +108,34 @@ const CreateClass = () => {
     }
 
     
-//
+// Equipment
 
 
-    const [equipments, setEquipments] = useState([
-        { equipmentName: ""},
-        { equipmentName: ""}
-    ]);
-    
+    const [items, setItems] = useState([]);    
 
-    const handleChange = (e, index) => {
-        const { name, value } = e.target;
-        const values = [...equipments];
-        values[index][name] = value;
-        setEquipments(values);
+    useEffect(() => {
+        const storageItems = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY,));
+        if(storageItems){
+            setItems(storageItems);
+        }
+    }, [])
+
+    useEffect(() => {        
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items))
+    }, [items]);
+
+
+    const addItem = (newItem) => {
+        setItems([newItem, ...items])
+        console.log(newItem);
     }
 
-    const handleMore = () => {
-        setEquipments([...equipments, { equipmentName:""}])
-
-    }
-
-    const handleClick = () => {
-        const newValue = JSON.stringify(equipments)
-        console.log(newValue)
-
-    }
-
-    const clearInput = () => {
-        setEquipments("")
+    const removeItem = (id) => {
+        const removeItem = items.filter(item => item.id !== id);
+        setItems(removeItem);
         
     }
+
 
 
 
@@ -290,28 +291,19 @@ const CreateClass = () => {
                         <div className="entity_row">
                             <div className="row_label">Exercise equipment needed</div>
                             <div className="row_equipment">
-
-                                { equipments.map((equipment, index) => (
-                                    <Equipment 
-                                        name={`equipment${index + 1}`}
-                                        cName='equipment_input' 
-                                        key={index}
-                                        value={equipment.equipmentName}
-                                        placeholder={`Equipment ${index + 1}`}
-                                        change={(e) => handleChange(e, index)}
-                                        clear={clearInput}
-                                    />
-                                ))}
-                            </div>
-
-                            <div className="other_btn all_btn" onClick={handleMore}>
-                                <div className="more_options">More</div>
-                                <div className="plus_icon"><HiPlus /></div>
-                            </div>
-                            <div className="other_btn all_btn" onClick={handleClick}>
-                                <div className="more_options">show</div>
+                                <div className="profile_input_row">
+                                    <ItemForm addItem={addItem} placeholder="Add an Equipment"/>
+                                </div>
                                 
                             </div>
+
+                            <ItemList 
+                                    items={items}
+                                    removeItem={removeItem}
+                                    
+                                />
+
+                            
                         </div>
 
                         <button className="add_class_btn">

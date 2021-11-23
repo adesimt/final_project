@@ -1,12 +1,25 @@
 import { useState } from 'react';
 
 
-const ProfileInput = ({ rowTitle, unit }) => {
+const ProfileInput = ({ rowTitle, unit, getInputedValue }) => {
     const [value, setValue] = useState('');
 
     const handleChange = (e) => {
         setValue(e.target.value);
+        if(isNaN(e.target.value)){
+            
+            return 'Not a Number!';
+
+        }
+        else{
+            getInputedValue(e.target.value);
+        }
     }
+
+
+
+
+    
     return ( 
 
         <>

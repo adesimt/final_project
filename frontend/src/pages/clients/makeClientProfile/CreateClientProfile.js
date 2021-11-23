@@ -2,24 +2,22 @@ import { Link } from 'react-router-dom';
 import UploadImage from '../../../components/UploadImage';
 import '../../../files/makeProfile.css';
 import ProfileCheckbox from '../../../components/ProfileCheckbox';
-import { gender } from '../../../files/CheckboxOptions';
+import { ages, gender } from '../../../files/CheckboxOptions';
 import ProfileInput from '../../../components/ProfileInput';
 import FlatButton from '../../../components/FlatButton';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import ItemForm from '../../../components/addItems/ItemForm';
 import ItemList from '../../../components/addItems/ItemList';
 import '../../../files/AddItems.css';
-import { useMemo } from 'react';
 
 
-const LOCAL_STORAGE_KEY = "specializations";
+const LOCAL_STORAGE_KEY = "fitness-goals";
 
-const CreateTrainerProfile = () => {
+const CreateClientProfile = () => {
     
 
 
     const [items, setItems] = useState([]);
-    const [aboutMe, setAboutMe] = useState('');
 
     
 
@@ -31,7 +29,7 @@ const CreateTrainerProfile = () => {
     }, [])
 
     useEffect(() => {        
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items));
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items))
     }, [items]);
 
 
@@ -47,66 +45,53 @@ const CreateTrainerProfile = () => {
     }
 
 
-    // function to grab all data
-    // console.log(getProfilePicture);
-    
 
+     // get all data
 
-    // get all data
-
-    const[profileImage, setProfileImage] = useState(null);
-    const[myGender, setMyGender] = useState(null);
-    const[yearOfExp, setYearOfExp] = useState(null);
-
-    //get profile picture
-    const getProfilePicture = (file) => {
-        setProfileImage(file.name)
-    }
-
-    //get selected box
-    const getSelectedValue = (value) => {
-        setMyGender(value);
+     const[profileImage, setProfileImage] = useState(null);
+     const[myGender, setMyGender] = useState(null);
+     const[yearOfExp, setYearOfExp] = useState(null);
+ 
+     //get profile picture
+     const getProfilePicture = (file) => {
+         setProfileImage(file.name)
+     }
+ 
+     //get selected box
+     const getSelectedValue = (value) => {
+         setMyGender(value);
+         
+     }
+ 
+     //get inputed box
+    //  const getInputedValue = (value) => {        
         
-    }
-
-    //get inputed box
-    const getInputedValue = (value) => {        
-       
-        setYearOfExp(value);
-    }
+    //      setYearOfExp(value);
+    //  }
+ 
+ 
+     
+ 
+ 
+     const data = useMemo(()=> {
+ 
+         const allValues = {profileImage, myGender, yearOfExp, items};
+ 
+         return allValues;
+ 
+     }, [profileImage, myGender, yearOfExp, items]);
+ 
+ 
+ 
+ 
+     const handleSubmit = (e) => {
+         e.preventDefault();
+         console.log(data);
+ 
+     }
 
 
     
-
-
-    const data = useMemo(()=> {
-
-        const allValues = {profileImage, myGender, yearOfExp, items, aboutMe};
-
-        return allValues;
-
-    }, [profileImage, myGender, yearOfExp, items, aboutMe]);
-
-
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(data);
-
-    }
-
-    const handleChange = (e) => {
-        const value = e.target.value;
-        setAboutMe(value);
-    }
-
-
-
-
-
-
-
 
     return ( 
         <>
@@ -118,16 +103,19 @@ const CreateTrainerProfile = () => {
                         <p className="profile_picture_text">Let's add a profile picture</p>
                         <UploadImage getProfilePicture={getProfilePicture}/>
                         <div className="other_profile_content">
+                            <ProfileCheckbox items = {ages.allRanges} rowTitle={ages.title} getSelectedValue={getSelectedValue}/>
                             <ProfileCheckbox items = {gender.allRanges} rowTitle={gender.title} getSelectedValue={getSelectedValue}/>
                             <div className="height_inputs">
-                                <ProfileInput rowTitle="Years of Experience" getInputedValue={getInputedValue}/>                                
+                                <ProfileInput rowTitle="What is your height" unit="ft"/>
+                                <ProfileInput unit="In" />
                             </div>
-                            
+                            <ProfileInput rowTitle="What is your weight" unit="lbs"/>
+
                             <div className="section_container">
-                                <div className="profile_row_title">What is/are your area of specializations</div>
+                                <div className="profile_row_title">What is/are your fitness goals</div>
                                 <div className="input_row_container">
                                     <div className="profile_input_row">
-                                        <ItemForm addItem={addItem} placeholder="Area of specialization"/>
+                                        <ItemForm addItem={addItem} placeholder="Set your fitness goals"/>
                                     </div>
                                 </div>
 
@@ -137,21 +125,6 @@ const CreateTrainerProfile = () => {
                                     
                                 />
 
-                            </div>
-
-                            <div className="section_container">
-                                <div className="section_text">Please take a moment to tell your clients about yourself</div>
-                                <div className="profile_row_title">About me</div>
-                                <div className="row_text">
-                                    <textarea 
-                                        name="about_me"
-                                        placeholder="About me" 
-                                        cols="80" 
-                                        rows="15"
-                                        value={aboutMe}
-                                        onChange={handleChange}
-                                    ></textarea>
-                                </div>
                             </div>
 
                             
@@ -174,4 +147,4 @@ const CreateTrainerProfile = () => {
      );
 }
  
-export default CreateTrainerProfile;
+export default CreateClientProfile;

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './Profile.css';
+import '../../../files/Profile.css';
 
 
 const OptionPage = () => {

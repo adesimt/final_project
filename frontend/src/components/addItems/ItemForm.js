@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ItemForm = ({ addItem }) => {
+const ItemForm = ({ addItem, placeholder }) => {
     const[newItem, setNewItem] = useState({
         id: "",
         item: ""
@@ -37,6 +37,7 @@ const ItemForm = ({ addItem }) => {
                     name="item"
                     value={newItem.item}
                     onChange={handleItemChange}
+                    placeholder={placeholder}
                 />
                 <button className="add_item_input_btn"onClick={handleSubmit}>Add</button>
             </div>
