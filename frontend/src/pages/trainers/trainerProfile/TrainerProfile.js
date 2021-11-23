@@ -2,7 +2,7 @@ import Header from "../../../components/Header";
 import ProfileBanner from "../../../components/profileBanner/ProfileBanner";
 import SubBanner from "../../../components/SubBanner";
 import { specs, offeredClasses } from '../../../files/profileFiles';
-import './Profile.css';
+import '../../../files/Profile.css';
 
 const TrainerProfile = () => {
     return ( 

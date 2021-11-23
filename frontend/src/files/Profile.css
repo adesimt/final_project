@@ -43,6 +43,10 @@
     margin-right: 100px;
     cursor: pointer;
 }
+
+.selections a{
+    text-decoration: none;
+}
 .yes{
     background: #1DAE8C;
     margin-left: 100px;

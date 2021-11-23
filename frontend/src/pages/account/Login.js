@@ -1,21 +1,50 @@
 import './account.css';
 import { Link } from 'react-router-dom';
-import {useState } from 'react';
+import {useState, useMemo, useEffect } from 'react';
+import validations from '../../files/ValidateLogin';
+import { useAuth  } from '../../context/AuthContext';
 
 const Login = () => {
 
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [errors, setErrors] = useState({});
+    const { login } = useAuth();
 
 
 
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        const output = { email, password }
-        console.log(output);
 
+    const allValues = useMemo(() => {
+        const values = {email, password};
+        return values
+
+    }, [email, password]);
+
+
+
+    const handleSubmit = async (e)=> {
+            e.preventDefault();
+            if(errors){
+                setErrors(validations(allValues));
+
+            }
+            setIsSubmitted(true);
+            try {
+                await login(allValues);
+            } catch (error) {
+                console.log(error);
+            }       
+        
     }
+
+    useEffect(() => {
+        if(Object.keys(errors).length === 0 && isSubmitted){
+            setIsSubmitted(true);
+        }
+    }, [allValues, errors, isSubmitted])
+    
 
 
 
@@ -38,6 +67,8 @@ const Login = () => {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
+                            {errors.email && <span>*{errors.email}</span>}
+
                         </div>
 
                         <div className="form_elements">
@@ -51,6 +82,8 @@ const Login = () => {
                                 onChange={(e) => setPassword(e.target.value)}
 
                             />
+                            {errors.password && <span>*{errors.password}</span>}
+
                         </div>
 
                         <button className="btn login_btn">Login</button>

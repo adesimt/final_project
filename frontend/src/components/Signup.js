@@ -1,13 +1,11 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import validations  from '../files/ValidateFile';
-import { useEffect } from 'react';
-import { useMemo } from 'react';
 
 
 
 
-const TrainerSignup = ({states}) => {
+const Signup = ({states, postData}) => {
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -33,13 +31,15 @@ const TrainerSignup = ({states}) => {
                 setErrors(validations(allValues));
 
             }
-            setIsSubmitted(true);        
+            setIsSubmitted(true);
+            postData(allValues);
+
         
     }
 
     useEffect(() => {
         if(Object.keys(errors).length === 0 && isSubmitted){
-            setIsSubmitted(true);
+            setIsSubmitted(true);            
             console.log(allValues);
         }
     }, [allValues, errors, isSubmitted])
@@ -160,6 +160,7 @@ const TrainerSignup = ({states}) => {
             </div>
         </div>
      );
+
 }
  
-export default TrainerSignup;
+export default Signup;

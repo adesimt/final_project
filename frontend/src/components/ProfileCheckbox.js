@@ -3,15 +3,15 @@ import '../files/makeProfile.css';
 
 
 
-const ProfileCheckbox = ({ items, rowTitle }) => {
+const ProfileCheckbox = ({ items, rowTitle, getSelectedValue }) => {
 
 
     const handleCheck = (e) => {
         const value = e.target.value;
         if(e.target.checked){
-            console.log(`${value} is checked`);
+            getSelectedValue(value);
         }else{
-            console.log(`${value} is not checked`);
+            return false;
         }
     }
 

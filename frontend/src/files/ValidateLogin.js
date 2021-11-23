@@ -1,17 +1,6 @@
 export default function validations(values){
     let errors = {}
 
-
-    //first name
-    if(!values.firstName.trim()){
-        errors.firstName = 'First name required';
-    }
-
-    //last name
-    if(!values.lastName.trim()){
-        errors.lastName = 'Last name required';
-    }
-
     //email
     if (!values.email){
         errors.email = 'Email required';
@@ -28,10 +17,6 @@ export default function validations(values){
         errors.password = 'Password must contain between 6 and 60 characters'
     }
 
-    //city
-    if(!values.city){
-        errors.city = 'Name of the city is required';
-    }
 
     return errors;
 
