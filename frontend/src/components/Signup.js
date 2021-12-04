@@ -1,48 +1,11 @@
 import { Link } from 'react-router-dom';
-import { useState, useMemo, useEffect } from 'react';
-import validations  from '../files/ValidateFile';
+//import { useState, useMemo, useEffect } from 'react';
 
 
 
 
-const Signup = ({states, postData}) => {
+const Signup = ({ states, errors, formData, setFormData}) => {
 
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [city, setCity] = useState("");
-    const [state, setState] = useState("");
-    const [isSubmitted, setIsSubmitted] = useState(false);
-
-
-    const allValues = useMemo(() => {
-        const values = {firstName, lastName, email, password, city, state};
-        return values
-
-    }, [firstName, lastName, email, password, city, state]);
-    const [errors, setErrors] = useState({});
-
-
-
-    const handleSubmit = e => {
-            e.preventDefault();
-            if(errors){
-                setErrors(validations(allValues));
-
-            }
-            setIsSubmitted(true);
-            postData(allValues);
-
-        
-    }
-
-    useEffect(() => {
-        if(Object.keys(errors).length === 0 && isSubmitted){
-            setIsSubmitted(true);            
-            console.log(allValues);
-        }
-    }, [allValues, errors, isSubmitted])
     
     // const handleBlur = e => {
         
@@ -58,7 +21,7 @@ const Signup = ({states, postData}) => {
                 <Link to="/"><div className="logo">logo</div></Link>
                 <div className="form_container signup_container">
                     <div className="form_header">Create Account</div>
-                    <form className="form" onSubmit={handleSubmit}>
+                    <div className="form">
 
                         <div className="form_elements_flex">
 
@@ -69,8 +32,8 @@ const Signup = ({states, postData}) => {
                                     name="firstName" 
                                     className={!errors.firstName ? "firstName" : "error" }
                                     placeholder="First Name"
-                                    value={firstName}
-                                    onChange={(e) => setFirstName(e.target.value)}
+                                    value={formData.firstName}
+                                    onChange={(e) => setFormData({...formData, firstName: e.target.value})}
                             
                                 />
                                 {errors.firstName && <span>*{errors.firstName}</span>}
@@ -83,8 +46,8 @@ const Signup = ({states, postData}) => {
                                     name="lastName" 
                                     className={!errors.lastName ? "lastName" : "error" } 
                                     placeholder="Last Name"
-                                    value={lastName}
-                                    onChange={(e) => setLastName(e.target.value)}
+                                    value={formData.lastName}
+                                    onChange={(e) => setFormData({...formData, lastName: e.target.value})}
 
                                 />
                                 {errors.lastName && <span>*{errors.lastName}</span>}
@@ -99,8 +62,8 @@ const Signup = ({states, postData}) => {
                                 name="email" 
                                 className={!errors.email ? "email" : "error" } 
                                 placeholder="Email Address"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                value={formData.email}
+                                onChange={(e) => setFormData({...formData, email: e.target.value})}
                                 
                             />
                             {errors.email && <span>*{errors.email}</span>}
@@ -114,8 +77,8 @@ const Signup = ({states, postData}) => {
                                 name="password" 
                                 className={!errors.password ? "password" : "error" } 
                                 placeholder="Password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                value={formData.password}
+                                onChange={(e) => setFormData({...formData, password: e.target.value})}
 
                             />
                             {errors.password && <span>*{errors.password}</span>}
@@ -132,8 +95,8 @@ const Signup = ({states, postData}) => {
                                     name="city" 
                                     className={!errors.city ? "city" : "error" } 
                                     placeholder="City"
-                                    value={city}
-                                    onChange={(e) => setCity(e.target.value)}
+                                    value={formData.city}
+                                    onChange={(e) => setFormData({...formData, city: e.target.value})}
                                     
                                 />
                                 {errors.city && <span>*{errors.city}</span>}
@@ -142,7 +105,7 @@ const Signup = ({states, postData}) => {
 
                             <div className="form_elements last_element">
                                 <label>State</label>
-                                <select name="states" className="states" value={state} onChange={(e) => setState(e.target.value)}>
+                                <select name="states" className="states" value={formData.state} onChange={(e) => setFormData({...formData, state: e.target.value})}>
 
                                     { states.map((state, index) => <option value={state} key={index}>{state}</option>
 
@@ -153,9 +116,9 @@ const Signup = ({states, postData}) => {
                         </div>
                         
 
-                        <button className="btn login_btn">Create Account</button>
+                        
 
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

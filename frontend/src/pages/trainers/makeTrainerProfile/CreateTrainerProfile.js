@@ -4,7 +4,6 @@ import '../../../files/makeProfile.css';
 import ProfileCheckbox from '../../../components/ProfileCheckbox';
 import { gender } from '../../../files/CheckboxOptions';
 import ProfileInput from '../../../components/ProfileInput';
-import FlatButton from '../../../components/FlatButton';
 import { useState, useEffect } from 'react';
 import ItemForm from '../../../components/addItems/ItemForm';
 import ItemList from '../../../components/addItems/ItemList';
@@ -14,12 +13,11 @@ import { useMemo } from 'react';
 
 const LOCAL_STORAGE_KEY = "specializations";
 
-const CreateTrainerProfile = () => {
+const CreateTrainerProfile = ({ formData, setFormData}) => {
     
 
 
-    const [items, setItems] = useState([]);
-    const [aboutMe, setAboutMe] = useState('');
+    const [items, setItems] = useState(formData.items);
 
     
 
@@ -36,7 +34,8 @@ const CreateTrainerProfile = () => {
 
 
     const addItem = (newItem) => {
-        setItems([newItem, ...items])
+        // setItems([newItem, ...items]);
+        setFormData([newItem, ...items]);
         console.log(newItem);
     }
 
@@ -47,64 +46,37 @@ const CreateTrainerProfile = () => {
     }
 
 
-    // function to grab all data
-    // console.log(getProfilePicture);
-    
-
-
-    // get all data
-
-    const[profileImage, setProfileImage] = useState(null);
-    const[myGender, setMyGender] = useState(null);
-    const[yearOfExp, setYearOfExp] = useState(null);
 
     //get profile picture
     const getProfilePicture = (file) => {
-        setProfileImage(file.name)
+        setFormData(file);
     }
 
     //get selected box
     const getSelectedValue = (value) => {
-        setMyGender(value);
+        //setMyGender(value);
+        setFormData(value);
         
     }
 
     //get inputed box
     const getInputedValue = (value) => {        
        
-        setYearOfExp(value);
+        setFormData(value);
+        //setYearOfExp(value);
     }
 
 
     
 
 
-    const data = useMemo(()=> {
+    // const data = useMemo(()=> {
 
-        const allValues = {profileImage, myGender, yearOfExp, items, aboutMe};
+    //     const allValues = {profileImage, myGender, yearOfExp, items, aboutMe};
 
-        return allValues;
+    //     return allValues;
 
-    }, [profileImage, myGender, yearOfExp, items, aboutMe]);
-
-
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(data);
-
-    }
-
-    const handleChange = (e) => {
-        const value = e.target.value;
-        setAboutMe(value);
-    }
-
-
-
-
-
+    // }, [profileImage, myGender, yearOfExp, items, aboutMe]);
 
 
 
@@ -113,7 +85,8 @@ const CreateTrainerProfile = () => {
             <div className="option_page">
                 <div className="content">
                     <Link to="/"><div className="logo logo1">logo</div></Link>
-                    <form className="container" onSubmit={handleSubmit}>
+                    <div
+                     className="container">
                         <h3 className="about_you">About you</h3>
                         <p className="profile_picture_text">Let's add a profile picture</p>
                         <UploadImage getProfilePicture={getProfilePicture}/>
@@ -147,25 +120,20 @@ const CreateTrainerProfile = () => {
                                         name="about_me"
                                         placeholder="About me" 
                                         cols="80" 
-                                        rows="15"
-                                        value={aboutMe}
-                                        onChange={handleChange}
+                                        rows="15"                                        
+                                        value={formData.aboutMe}
+                                        onChange={(e) => setFormData({...formData, aboutMe: e.target.value})}
                                     ></textarea>
                                 </div>
                             </div>
-
-                            
-
-                            <button className="save_profile_btn">
-                                <FlatButton name='Save profile' />
-                            </button>
 
 
                         </div>
 
                         
                         
-                    </form>
+                    </div
+                    >
 
                     
                 </div>
