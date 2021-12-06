@@ -64,7 +64,7 @@ export const ages = {
 
     
 }
-export const gender = {
+export const Allgenders = {
     title: "Gender",
     allRanges: [
 

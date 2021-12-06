@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import UploadImage from '../../../components/UploadImage';
 import '../../../files/makeProfile.css';
 import ProfileCheckbox from '../../../components/ProfileCheckbox';
-import { ages, gender } from '../../../files/CheckboxOptions';
+import { ages, Allgenders } from '../../../files/CheckboxOptions';
 import ProfileInput from '../../../components/ProfileInput';
 import FlatButton from '../../../components/FlatButton';
 import { useState, useEffect, useMemo } from 'react';
@@ -104,7 +104,7 @@ const CreateClientProfile = () => {
                         <UploadImage getProfilePicture={getProfilePicture}/>
                         <div className="other_profile_content">
                             <ProfileCheckbox items = {ages.allRanges} rowTitle={ages.title} getSelectedValue={getSelectedValue}/>
-                            <ProfileCheckbox items = {gender.allRanges} rowTitle={gender.title} getSelectedValue={getSelectedValue}/>
+                            <ProfileCheckbox items = {Allgenders.allRanges} rowTitle={Allgenders.title} getSelectedValue={getSelectedValue}/>
                             <div className="height_inputs">
                                 <ProfileInput rowTitle="What is your height" unit="ft"/>
                                 <ProfileInput unit="In" />
