@@ -45,7 +45,7 @@ const CreateTrainerProfile = ({ formData, setFormData }) => {
    
     const imageHandler = (e) => {
         const selected = e.target.files[0];
-        setFormData({...formData, profileImage: selected});
+        setFormData({...formData, file: selected});
 
         const ALLOWED_TYPES = ["image/png", "image/jpeg", "image/jpg"];
         if(selected && ALLOWED_TYPES.includes(selected.type)){

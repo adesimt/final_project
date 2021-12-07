@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import CreateTrainerProfile from '../trainers/makeTrainerProfile/CreateTrainerProfile';
 import FlatButton from '../../components/FlatButton';
 import validations  from '../../files/ValidateFile';
+// import axios from 'axios';
 //import { getAllItems } from '../../pages/trainers/makeTrainerProfile/CreateTrainerProfile'
 
 
@@ -23,17 +24,18 @@ const TrainerSignup = () => {
         password: "",
         city: "",
         state: "",
-        profileImage:[],
+        file:[],
         gender: "",
+        yearOfExp: "",
         items: [],
         aboutMe: "",
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [isValid, setIsValid] = useState(false);
+    // const [isValid, setIsValid] = useState(false);
     
     
     
-    const formElements = ["signup", "user profile"];
+    // const formElements = ["signup", "user profile"];
 
     // const allValues = useMemo(() => {
     //     const values = {firstName, lastName, email, password, city, state};
@@ -44,21 +46,20 @@ const TrainerSignup = () => {
 
 
 
-    const handleSignUp = (currPage) => {
+    const handleSignUp = (e, currPage) => {
             
             if(errors){                
                 setErrors(validations(formData));
-                setPage(0);
 
 
-            }else{
-                setIsSubmitted(true);
-                //console.log(formData);
-                setTimeout(() => {
-                    setPage(currPage + 1)
-    
-                }, 2000);
             }
+            setIsSubmitted(true);
+            //console.log(formData);
+            setTimeout(() => {
+                setPage(currPage + 1)
+
+            }, 2000);
+            
             
 
         
@@ -86,6 +87,38 @@ const TrainerSignup = () => {
 
     const handleSubmit = () => {
         //console.log(formData);
+
+
+        const data = new FormData();
+        data.append('firstName', formData.firstName);
+        data.append('lastName', formData.lastName);
+        data.append('email', formData.email);
+        data.append('password', formData.password);
+        data.append('city', formData.city);
+        data.append('state', formData.state);  
+        data.append('profileImage', formData.file);
+        data.append('aboutMe', formData.aboutMe );
+        data.append('gender', formData.gender);
+        data.append('yearOfExp', formData.yearOfExp);
+        data.append('areaOfSpec', JSON.stringify(formData.items));
+
+        console.log(data);
+        console.log(formData);
+
+
+        try{
+            Axios.post('/signup-as-a-trainer',data,{                
+                headers: { "Content-Type": "multipart/form-data" }
+            })
+            .then((response) => {
+
+                console.log(response);        
+           
+            })
+        }catch(ex){
+            console.log(ex);
+
+        }
         
     }
     
