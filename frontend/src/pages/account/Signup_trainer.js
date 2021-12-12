@@ -6,6 +6,8 @@ import { useState, useEffect } from 'react';
 import CreateTrainerProfile from '../trainers/makeTrainerProfile/CreateTrainerProfile';
 import FlatButton from '../../components/FlatButton';
 import validations  from '../../files/ValidateFile';
+import { AiFillCamera } from 'react-icons/ai';
+
 // import axios from 'axios';
 //import { getAllItems } from '../../pages/trainers/makeTrainerProfile/CreateTrainerProfile'
 
@@ -24,13 +26,17 @@ const TrainerSignup = () => {
         password: "",
         city: "",
         state: "",
-        file:[],
         gender: "",
         yearOfExp: "",
         items: [],
         aboutMe: "",
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [profilePicture, setProfilePicture] = useState(null);
+    const [file, setFile] = useState({
+        file:[],
+    });
+
     // const [isValid, setIsValid] = useState(false);
     
     
@@ -74,20 +80,37 @@ const TrainerSignup = () => {
 
 
 
+    const imageHandler = (e) => {
+        const selected = e.target.files[0];
+        setFile({...file, file:selected});
+
+        const ALLOWED_TYPES = ["image/png", "image/jpeg", "image/jpg"];
+        if(selected && ALLOWED_TYPES.includes(selected.type)){
+            let reader = new FileReader();
+            reader.onloadend = () => {
+                setProfilePicture(reader.result)
+            }
+            reader.readAsDataURL(selected)
+        } else {
+            // setError(true);
+            console.log("file not supported");
+        }
 
 
-    //get specialization items
-    // const getAllItems = (allItems) => {
-    //     setFormData({...formData, items: allItems});
-    // }
+        //setForm();
 
-    
+        
+    }
 
 
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
         //console.log(formData);
 
+
+        e.preventDefault();
+
+        //const newData = {...formData, file: JSON.stringify(file) }
 
         const data = new FormData();
         data.append('firstName', formData.firstName);
@@ -96,20 +119,32 @@ const TrainerSignup = () => {
         data.append('password', formData.password);
         data.append('city', formData.city);
         data.append('state', formData.state);  
-        data.append('profileImage', formData.file);
+        data.append('file', file.file);
         data.append('aboutMe', formData.aboutMe );
         data.append('gender', formData.gender);
         data.append('yearOfExp', formData.yearOfExp);
         data.append('areaOfSpec', JSON.stringify(formData.items));
 
-        console.log(data);
-        console.log(formData);
+
+
+        // for(var pair of data.entries()) {
+        //     console.log(pair[0]+ ', '+ pair[1]);
+        // }
+
+        //console.log(data);
+        //console.log(newData);
 
 
         try{
-            Axios.post('/signup-as-a-trainer',data,{                
-                headers: { "Content-Type": "multipart/form-data" }
-            })
+
+            // fetch('/signup-as-a-trainer', {
+            //     method: 'POST', 
+            //     headers: { "Content-Type": "application/json"  },
+            //     body: JSON.stringify(data)
+            // }).then(() => {
+            //     console.log("new user added");
+            // })
+            Axios.post('/signup-as-a-trainer', data)
             .then((response) => {
 
                 console.log(response);        
@@ -131,39 +166,64 @@ const TrainerSignup = () => {
 
     return ( 
         <>
-            {/* {!signup ? <Signup states={states} postData={postData}/> : <TrainerOptionPage name = {name}/> } */}
-            {page === 0 ? <Signup states={states} formData={formData} setFormData={setFormData} errors={errors}/> : <CreateTrainerProfile formData={formData} setFormData={setFormData} /> }
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
+                {/* {!signup ? <Signup states={states} postData={postData}/> : <TrainerOptionPage name = {name}/> } */}
 
-            <div className="form_footer">
-                {page === 0 ?
+                {page === 0 ? <Signup states={states} formData={formData} setFormData={setFormData} errors={errors}/> : 
+
+                <div>
+                
+                    <div className="image_upload_container">
+                    <div className="image_upload">
+                        <img src={profilePicture} alt="" className="img" />
+                    </div>
+                    <div className="camera_container">
+                        <input type="file" id="input" name="profileImage" accept="image/*" onChange={imageHandler}/>
+                        <div className="camera_icon">
+                            <label htmlFor="input" className="image-uplaod">
+                                <AiFillCamera />
+                            </label>
+                            
+                        </div>
+                    </div>
+
+                    </div>
+                
+                    <CreateTrainerProfile formData={formData} setFormData={setFormData} /> 
+                </div>}
+
+                <div className="form_footer">
+                    {page === 0 ?
+                            <div 
+                                className="btn login_btn"
+                                onClick={handleSignUp}
+                            >
+                                Create Account
+                            </div>
+
+                        :
+                        
                         <button 
-                            className="btn login_btn"
-                            onClick={handleSignUp}
+                            type="submit"
+                            className="save_profile_btn"
+                            // onClick={handleSubmit}
+                        
                         >
-                            Create Account
+                            
+                            
+                            
+                            <FlatButton name='Save profile' />
+                        
                         </button>
 
-                    :
+
+                    }
                     
-                    <button 
-                        className="save_profile_btn"
-                        onClick={handleSubmit}
+
                     
-                    >
-                        
-                        
-                        
-                        <FlatButton name='Save profile' />
-                    
-                    </button>
 
-
-                }
-                
-
-                
-
-            </div>
+                </div>
+            </form>
         </>
      );
 }

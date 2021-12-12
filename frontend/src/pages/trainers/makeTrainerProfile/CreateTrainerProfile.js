@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import '../../../files/makeProfile.css';
 import { useState, useEffect } from 'react';
 import '../../../files/AddItems.css';
-import { AiFillCamera } from 'react-icons/ai';
 import FlatButton from '../../../components/FlatButton';
 import { Allgenders } from '../../../files/CheckboxOptions';
 import ProfileCheckbox from '../../../components/ProfileCheckbox';
@@ -36,34 +35,13 @@ const CreateTrainerProfile = ({ formData, setFormData }) => {
     // const [file, setFile] = useState({
     //     file:[],
     // });
-    const [profilePicture, setProfilePicture] = useState(null);
     // const [aboutMe, setAboutMe] = useState('');
     // const [myGender, setMyGender] = useState('');
     // const [yearOfExp, setYearOfExp] = useState('');
     
 
    
-    const imageHandler = (e) => {
-        const selected = e.target.files[0];
-        setFormData({...formData, file: selected});
-
-        const ALLOWED_TYPES = ["image/png", "image/jpeg", "image/jpg"];
-        if(selected && ALLOWED_TYPES.includes(selected.type)){
-            let reader = new FileReader();
-            reader.onloadend = () => {
-                setProfilePicture(reader.result)
-            }
-            reader.readAsDataURL(selected)
-        } else {
-            // setError(true);
-            console.log("file not supported");
-        }
-
-
-        //setForm();
-
-        
-    }
+    
 
 
     const handleAboutMe = (e) => {
@@ -188,21 +166,7 @@ const CreateTrainerProfile = ({ formData, setFormData }) => {
                         <h3 className="about_you">About you</h3>
                         <p className="profile_picture_text">Let's add a profile picture</p>
                         {/* <input type="hidden" name="currentId" value={currentId} className="file-hidden"/> */}
-                        <div className="image_upload_container">
-                            <div className="image_upload">
-                                <img src={profilePicture} alt="" className="img" />
-                            </div>
-                            <div className="camera_container">
-                                <input type="file" id="input" name="profileImage" accept="image/*" onChange={imageHandler}/>
-                                <div className="camera_icon">
-                                    <label htmlFor="input" className="image-uplaod">
-                                        <AiFillCamera />
-                                    </label>
-                                    
-                                </div>
-                            </div>
-
-                        </div>
+                        
 
                         <div className="other_profile_content">
                             <ProfileCheckbox getSelectedValue={getSelectedValue} name="myGender" genderItems = {Allgenders.allRanges} rowTitle={Allgenders.title}/>
