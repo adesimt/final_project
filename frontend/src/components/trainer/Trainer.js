@@ -4,16 +4,18 @@ import { GoPrimitiveDot } from 'react-icons/go';
 import '../trainer/User.css';
 
 
-const Trainer = () => {
+const Trainer = ({ trainer }) => {
+
+    console.log(trainer);
     return ( 
         <div className="card">
             <div className="card_image">
-                <img src="/images/trainer1.jpg" alt="trainer" className="trainer_img"/>
+                <img src={`/uploads/${trainer.trainer_image}`} alt={`${trainer.trainer_image}`} className="trainer_img"/>
 
             </div>
             <div className="card_info">
                 <div className="card_info_container">
-                    <h5 className="person_name">Susan Figueroa</h5>
+                    <h5 className="person_name">{`${trainer.trainer_first_name} ${trainer.trainer_last_name}`}</h5>
                     <div className="rating">
                         <AiFillStar fill='#1DAE8C'/>
                         <AiFillStar fill='#1DAE8C'/>
@@ -23,7 +25,7 @@ const Trainer = () => {
                     </div>
                     <div className="person_location">
                         <div className="location_icon"><ImLocation2 /></div>
-                        <div className="location_addr">Minneapolis, MN</div>
+                        <div className="location_addr">{`${trainer.trainer_city}, ${trainer.trainer_state}`}</div>
 
                     </div>
                     <h6>Specializations:</h6>
