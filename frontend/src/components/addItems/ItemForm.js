@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback  } from "react";
 
 const ItemForm = ({ addItem, placeholder }) => {
     const[newItem, setNewItem] = useState({
@@ -6,10 +6,11 @@ const ItemForm = ({ addItem, placeholder }) => {
         item: ""
     });
 
-    const handleItemChange = (e) => {
+    const handleItemChange = useCallback(e => {
         const value = e.target.value;
         setNewItem({ ...newItem, item: value})
-    }
+    }, [newItem]);
+
 
     const handleSubmit = (e) => {
 

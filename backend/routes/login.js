@@ -9,14 +9,14 @@ const bcrypt = require('bcrypt');
 
 
 
-router.get('/login', (req, res, next) => {
-    if(req.session.trainer){
-        res.send({ loggedIn: true, user: req.session.trainer});
-    }else{
-        res.send({ loggedIn: false });
-    }
+// router.get('/login', (req, res, next) => {
+//     if(req.session.trainer){
+//         res.send({ loggedIn: true, user: req.session.trainer});
+//     }else{
+//         res.send({ loggedIn: false });
+//     }
 
-})
+// })
 
 
 

@@ -3,7 +3,7 @@ import '../files/makeProfile.css';
 
 
 
-const ProfileCheckbox = ({ items, rowTitle, getSelectedValue }) => {
+const ProfileCheckbox = ({ genderItems, rowTitle, getSelectedValue }) => {
 
 
     const handleCheck = (e) => {
@@ -22,7 +22,7 @@ const ProfileCheckbox = ({ items, rowTitle, getSelectedValue }) => {
             <div className="section_container">
                 <div className="profile_row_title">{rowTitle}</div>
                 <div className="checkbox_row_container">
-                    {items.map((item, index) => (
+                    {genderItems.map((item, index) => (
                         <div className="profile_checkbox_row" key={index}>
                             <div className="profile_checkbox_row_label">{item.range}</div>
                             <CheckBoxComponent value={item.range} onChange={handleCheck}/>

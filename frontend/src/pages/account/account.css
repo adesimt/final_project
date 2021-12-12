@@ -94,8 +94,12 @@ input::placeholder{
 }
 
 .login_btn{
-    background: #1A272A;    
+    background: #1A272A;
+    position: absolute;
+    left: 40%;
+    bottom: 10%;  
 }
+
 
 .create_btn{
     background: #1DAE8C;
@@ -116,4 +120,11 @@ input::placeholder{
 
 input.error{
     outline: 0.5px solid #e10321;
+}
+
+.save_profile_btn{
+    position: absolute;
+    top: 170%;
+    right: 40%;
+    
 }
