@@ -11,15 +11,14 @@ import Axios from 'axios';
 const Trainers = () => {
 
 
-    const [trainerList, setTrainerList] = useState([]);
+    const [allTrainers, setAllTrainers] = useState([]);
 
     useEffect(() => {
         Axios.get('/client-dashboard/trainers')
-        .then(res => {
-            console.log(res.data);
-            setTrainerList(res.data);
-        });
-        
+        .then((response) => {
+            setAllTrainers(response.data);
+            console.log(response.data);
+        })
       }, [])
 
 
@@ -50,13 +49,12 @@ const Trainers = () => {
                     </div>
                     <div className="content_container">
                         <div className="trainers_container">
-
-                            {trainerList && trainerList.map((trainer, index) => {
-                                // <Trainer trainer={data} key={data.trainer_id}/>
-                                return <h1 key={index} >{trainer.trainer_firstName}</h1>
-                                
-                            })}
-                            
+                            <Trainer />
+                            <Trainer />
+                            <Trainer />
+                            <Trainer />
+                            <Trainer />
+                            <Trainer />
                         </div>
                     </div>
                 </div>
