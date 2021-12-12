@@ -49,12 +49,11 @@ const Trainers = () => {
                     </div>
                     <div className="content_container">
                         <div className="trainers_container">
-                            <Trainer />
-                            <Trainer />
-                            <Trainer />
-                            <Trainer />
-                            <Trainer />
-                            <Trainer />
+                            {allTrainers && allTrainers.map((data) => {
+                            
+                                return <Trainer key={data.trainer_id} trainer={data}/>
+                            })}
+                            
                         </div>
                     </div>
                 </div>
