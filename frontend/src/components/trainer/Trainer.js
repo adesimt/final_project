@@ -2,11 +2,70 @@ import { AiFillStar, AiOutlineStar} from 'react-icons/ai';
 import { ImLocation2 } from 'react-icons/im';
 import { GoPrimitiveDot } from 'react-icons/go';
 import '../trainer/User.css';
-
+import { Link } from 'react-router-dom';
 
 const Trainer = ({ trainer }) => {
 
-    console.log(trainer);
+
+    const getRating = (ratingValue) => {
+        if(ratingValue === 0){
+            return <div>
+                        <AiOutlineStar fill='#1DAE8C'/>
+                        <AiOutlineStar fill='#1DAE8C'/>
+                        <AiOutlineStar fill='#1DAE8C'/>
+                        <AiOutlineStar fill='#1DAE8C'/>
+                        <AiOutlineStar fill='#1DAE8C'/>
+                    </div>
+        }
+        else if(ratingValue === 1){
+            return <div>
+                        <AiFillStar fill='#1DAE8C'/>
+                        <AiOutlineStar fill='#1DAE8C'/>
+                        <AiOutlineStar fill='#1DAE8C'/>
+                        <AiOutlineStar fill='#1DAE8C'/>
+                        <AiOutlineStar fill='#1DAE8C'/>
+                    </div>
+        }
+        else if(ratingValue === 2){
+            return <div>
+                        <AiFillStar fill='#1DAE8C'/>
+                        <AiFillStar fill='#1DAE8C'/>
+                        <AiOutlineStar fill='#1DAE8C'/>
+                        <AiOutlineStar fill='#1DAE8C'/>
+                        <AiOutlineStar fill='#1DAE8C'/>
+                    </div>
+        }
+        else if(ratingValue === 3){
+            return <div>
+                        <AiFillStar fill='#1DAE8C'/>
+                        <AiFillStar fill='#1DAE8C'/>
+                        <AiFillStar fill='#1DAE8C'/>
+                        <AiOutlineStar fill='#1DAE8C'/>
+                        <AiOutlineStar fill='#1DAE8C'/>
+                    </div>
+        }
+        else if(ratingValue === 4){
+            return <div>
+                        <AiFillStar fill='#1DAE8C'/>
+                        <AiFillStar fill='#1DAE8C'/>
+                        <AiFillStar fill='#1DAE8C'/>
+                        <AiFillStar fill='#1DAE8C'/>
+                        <AiOutlineStar fill='#1DAE8C'/>
+                    </div>
+        }
+        else{
+            return <div>
+                        <AiFillStar fill='#1DAE8C'/>
+                        <AiFillStar fill='#1DAE8C'/>
+                        <AiFillStar fill='#1DAE8C'/>
+                        <AiFillStar fill='#1DAE8C'/>
+                        <AiFillStar fill='#1DAE8C'/>
+                        
+                    </div>
+        }
+
+    };
+
     return ( 
         <div className="card">
             <div className="card_image">
@@ -17,11 +76,7 @@ const Trainer = ({ trainer }) => {
                 <div className="card_info_container">
                     <h5 className="person_name">{`${trainer.trainer_first_name} ${trainer.trainer_last_name}`}</h5>
                     <div className="rating">
-                        <AiFillStar fill='#1DAE8C'/>
-                        <AiFillStar fill='#1DAE8C'/>
-                        <AiFillStar fill='#1DAE8C'/>
-                        <AiOutlineStar fill='#1DAE8C'/>
-                        <AiOutlineStar fill='#1DAE8C'/>
+                        {getRating(parseInt(trainer.trainer_rating))}
                     </div>
                     <div className="person_location">
                         <div className="location_icon"><ImLocation2 /></div>
@@ -57,9 +112,12 @@ const Trainer = ({ trainer }) => {
                     </div>
 
                     <div className="card_btns">
-                        <div className="card_btn view_profile">
-                            View profile
-                        </div>
+                        <Link to={`/trainers/profile/${trainer.trainer_id}`}>
+                            <div className="card_btn view_profile">
+                                View profile
+                            </div>                        
+                        </Link>
+                        
 
                         <div className="card_btn add_trainer">
                             Add trainer

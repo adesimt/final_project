@@ -2,8 +2,9 @@ import Header from '../../components/Header';
 import Navbar from '../../components/navbar/Navbar';
 import Trainer from '../../components/trainer/Trainer';
 import { ClientNavItems } from '../../files/NavItems';
-import { useEffect, useState } from 'react';
-import Axios from 'axios';
+import { useData } from '../../context/DataContext';
+// import { useEffect, useState } from 'react';
+// import Axios from 'axios';
 // import { Types } from '../../files/ClassEntities';
 
 
@@ -11,20 +12,7 @@ import Axios from 'axios';
 const Trainers = () => {
 
 
-    const [allTrainers, setAllTrainers] = useState([]);
-
-    useEffect(() => {
-        Axios.get('/client-dashboard/trainers')
-        .then((response) => {
-            setAllTrainers(response.data);
-            console.log(response.data);
-        })
-      }, [])
-
-
-
-
-
+    const { allTrainers } = useData();
 
 
 

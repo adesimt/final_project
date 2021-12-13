@@ -47,14 +47,15 @@ h5{
 
 }
 .person_location{
-    width: 8vw;
+    width: fit-content;
     display: flex;
-    justify-content: space-between;
     margin: 10px auto;
+    padding: 0 10px 0 10px;
     
 }
 .person_location .location_icon{
     font-size: 0.75em;
+    margin-right: 5px;
     margin-top: 3px;
 }
 .person_location .location_addr{

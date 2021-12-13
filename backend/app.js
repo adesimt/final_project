@@ -9,11 +9,9 @@ const cors = require('cors');
 const passport = require('passport');
 const session = require('express-session');
 require('dotenv').config();
-const indexRouter = require('./routes/index');
 const trainersRouter = require('./routes/trainers');
 const trainerSignupRouter = require('./routes/trainer/trainerSignup');
 const loginRouter = require('./routes/login');
-
 const app = express();
 require('./config/passport')(passport);
 
@@ -56,7 +54,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
 
-app.use('/', indexRouter);
 app.use(trainersRouter);
 app.use(trainerSignupRouter);
 app.use(loginRouter);
