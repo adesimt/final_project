@@ -88,7 +88,7 @@ function App() {
               <TrainerClasses />
             </Route>
 
-            <Route path="/trainer-dashboard/profile">        
+            <Route path="/trainer-dashboard/:id">  
               <TrainerProfile />
             </Route>
 

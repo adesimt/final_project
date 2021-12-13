@@ -9,10 +9,9 @@ const cors = require('cors');
 const passport = require('passport');
 const session = require('express-session');
 require('dotenv').config();
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const trainerSignupRouter = require('./routes/trainer/trainerSignup');
-const loginRouter = require('./routes/login');
+const authRoutes = require('./routes/authRoutes');
+const { requireAuth } = require('./controllers/authCheck');
+const { verify } = require('crypto');
 
 const app = express();
 require('./config/passport')(passport);
@@ -56,10 +55,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use(trainerSignupRouter);
-app.use(loginRouter);
+app.use(authRoutes, requireAuth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

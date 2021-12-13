@@ -8,7 +8,7 @@ import { useAuth } from '../../../context/AuthContext';
 
 const TrainerDashboard = () => {
 
-    const {currentUser} = useAuth(); 
+
     
 
    
@@ -20,7 +20,7 @@ const TrainerDashboard = () => {
                 <div className="dashboard_content">
 
                     <div className="content_container">
-                        <h2 className="hello_name">Hello, {currentUser.trainer_first_name}!</h2>
+                        <h2 className="hello_name">Hello,!</h2>
                         <Link to="/create-a-class"><FlatButton name='Create a new class' cName='new_class_btn'/></Link>
                         <br/>
                         <br/>                         

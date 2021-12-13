@@ -18,57 +18,54 @@ const AuthProvider = ({ children }) => {
     const history = useHistory();
 
     //  const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [currentUser, setCurrentUser] = useState([]);
-    //const [firstName, setFirstName] = useState("");
+    const [currentId, setCurrentId] = useState(null);
+    const [currentEmail, setCurrentEmail] = useState("");
+    const [isAuth, setIsAuth] = useState(false);
+    const [isTrainer, setisTrainer] = useState(false);
+    
 
 
-    // Axios.defaults.withCredentials = true;
+    Axios.defaults.withCredentials = true;
+
+
     function login(values){
         const {email, password} = values;
 
         Axios.post('/login', {email, password} )
         .then((response)=> {
 
-            if(response.data.user){
-                setCurrentUser(response.data.user[0]);
-                //setFirstName(response.data.user[0].trainer_first_name);
+            console.log(response);
+            if(response.status === 200 && response.statusText === 'OK' && response.data.user){
+                setCurrentId(response.data.user[0]);
+                setCurrentEmail(response.data.user[1]);
+                setIsAuth(response.data.isAuth);
+                setisTrainer(response.data.isTrainer);
+
                 history.push('/trainer-dashboard');
 
-
-            }else{
-                setCurrentUser([]);                
             }
+
+            // if(response.data.user){
+            //     setCurrentUser(response.data.user[0]);
+            //     //setFirstName(response.data.user[0].trainer_first_name);
+            //     //history.push('/trainer-dashboard');
+
+
+            // }else{
+            //     setCurrentUser([]);                
+            // }
         })
 
     }
-    console.log(currentUser);
-    //console.log(firstName);
-
-    useEffect(() => {
-       Axios.get('/login')
-       .then((response) => {
-        
-            if(response.data.loggedIn === true){
-                setCurrentUser(response.data.user[0]);
-            }
-       })
-    }, [])
-
-    
-
-
-
-
-
-
-
+  
 
 
 
     const value = {
-        currentUser,
+        currentId,
         login,
-        //firstName
+        isAuth,
+        isTrainer
     }
 
 
