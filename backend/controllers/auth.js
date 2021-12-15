@@ -221,11 +221,12 @@ exports.login = (req, res, next) => {
         if(result1.length > 0){
             bcrypt.compare(password, result1[0].trainer_password, (error, response) => {
                 if(response){
+                    //req.session.user = result1
                     trainerId = result1[0].trainer_id
                     
                     const token = createToken(trainerId);
                     res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
-                    res.send({user: [ trainerId, result1[0].trainer_email ], isAuth: true, isTrainer: true});
+                    res.send({user: result1, isAuth: true, isTrainer: true});
                 }else{
                     db.query(client_query, email, (err, result2) => {
                             if(err){

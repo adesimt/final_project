@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import Axios from 'axios';
 
 
@@ -7,7 +7,7 @@ import Axios from 'axios';
 const AuthContext = createContext();
 
 export function useAuth(){
-    return useContext(AuthContext)
+    return useContext(AuthContext);
 }
 
 
@@ -17,15 +17,17 @@ const AuthProvider = ({ children }) => {
 
     const history = useHistory();
 
+
     //  const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [currentId, setCurrentId] = useState(null);
-    const [currentEmail, setCurrentEmail] = useState("");
+    const [currentUser, setCurrentUser] = useState([]);
     const [isAuth, setIsAuth] = useState(false);
     const [isTrainer, setisTrainer] = useState(false);
     
 
 
     Axios.defaults.withCredentials = true;
+
 
 
     function login(values){
@@ -36,33 +38,32 @@ const AuthProvider = ({ children }) => {
 
             console.log(response);
             if(response.status === 200 && response.statusText === 'OK' && response.data.user){
-                setCurrentId(response.data.user[0]);
-                setCurrentEmail(response.data.user[1]);
+                setCurrentId(response.data.user[0].trainer_id);
+                setCurrentUser(response.data.user[0]);
                 setIsAuth(response.data.isAuth);
                 setisTrainer(response.data.isTrainer);
+                history.push('/auth/trainer-dashboard');
+               
+                
 
-                history.push('/trainer-dashboard');
+            }else{
+                history.push('/login');
 
             }
 
-            // if(response.data.user){
-            //     setCurrentUser(response.data.user[0]);
-            //     //setFirstName(response.data.user[0].trainer_first_name);
-            //     //history.push('/trainer-dashboard');
-
-
-            // }else{
-            //     setCurrentUser([]);                
-            // }
         })
 
     }
   
 
+    // console.log(currentId);
+    // console.log(isAuth);
+    console.log(currentUser);
 
 
     const value = {
         currentId,
+        currentUser,
         login,
         isAuth,
         isTrainer

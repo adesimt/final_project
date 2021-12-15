@@ -2,6 +2,8 @@ import { createContext, useContext, useState, useEffect } from 'react';
 //import { useHistory } from 'react-router-dom';
 import Axios from 'axios';
 import { useAuth  } from './AuthContext';
+import { useParams } from "react-router-dom";
+
 
 
 
@@ -16,13 +18,18 @@ export function useData(){
 
 const DataProvider = ({ children }) => {
 
-    const {currentId, currentEmail} = useAuth();
+    // const {currentId, currentEmail} = useAuth();
+    // const { id } = useParams(currentId);
+
    
 
-    Axios.get(`/user/${currentId}`)
-    .then((res) => {
-        console.log((res));
-    })
+    // useEffect(() => {
+    //     Axios.get(`/user/${id}`)
+    //     .then((res) => {
+    //         console.log((res));
+    //     })
+    // }, [currentId]);
+    
   
 
 

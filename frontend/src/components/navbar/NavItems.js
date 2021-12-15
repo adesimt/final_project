@@ -1,28 +1,40 @@
-export const ClientNavItems = [
+import Profile from "../Profile";
+
+
+export const NavItems = [
 
     {
-        title: 'Home',
-        path: '/dashboard/dashboard',
+        titleTrainer: 'Home',
+        titleClient: 'Home',
+        trainerPath: '/auth/trainer-dashboard',
+        clientPath: '/client-dashboard',
         cName: 'nav_links home'
     },
     {
-        title: 'Profile',
-        path: '/dashboard/profile',
+        titleTrainer: 'Profile',
+        titleClient: 'Profile',
+        trainerPath: '/auth/trainer-dashboard/profile',
+        clientPath: '/client-dashboard/profile',
         cName: 'nav_links profile'
     },
     {
-        title: 'My Schedule',
-        path: '/dashboard/my-schedule',
+        titleTrainer: 'My Schedule',
+        titleClient: 'My Schedule',
+        trainerPath: '/auth/trainer-dashboard/schedule',
+        clientPath: '/client-dashboard/schedule',
         cName: 'nav_links MySchedule'
     },
     {
-        title: 'Trainers',
-        path: '/dashboard/trainers',
+        titleTrainer: 'Clients',
+        titleClient: 'Trainers',
+        path: '/auth/client-dashboard/trainers',
         cName: 'nav_links trainers'
     },
     {
-        title: 'Classes',
-        path: '/dashboard/classes',
+        titleTrainer: 'Classes',
+        titleClient: 'Classes',
+        trainerPath: `/auth/trainer-dashboard/classes`,
+        clientPath: '/client-dashboard/classes',
         cName: 'nav_links classes'
     },
    
@@ -30,32 +42,31 @@ export const ClientNavItems = [
 
 
 
-export const TrainerNavItems = [
+// export const TraNavItems = [
 
-    {
-        title: 'Home',
-        path: '/dashboard',
-        cName: 'nav_links home'
-    },
-    {
-        title: 'Profile',
-        path: '/dashboard/profile',
-        cName: 'nav_links profile'
-    },
-    {
-        title: 'My Schedule',
-        path: '/dashboard/my-schedule',
-        cName: 'nav_links MySchedule'
-    },
-    {
-        title: 'Clients',
-        path: '/dashboard/clients',
-        cName: 'nav_links clients'
-    },
-    {
-        title: 'Classes',
-        path: '/dashboard/classes',
-        cName: 'nav_links classes'
-    },
+//     {
+//         title: 'Home',
+//         path: '/dashboard',
+//         cName: 'nav_links home'
+//     },
+//     {
+//         title: 'Profile',
+//         path: '/dashboard/profile',
+//         cName: 'nav_links profile'
+//     },
+//     {
+//         title: 'My Schedule',
+//         path: '/dashboard/my-schedule',
+//         cName: 'nav_links MySchedule'
+//     },
+//     {
+//         title: 'Clients',
+//         path: '/dashboard/clients',
+//         cName: 'nav_links clients'
+//     },
+//     {
+//         title: 'Classes',
+//         path: '/dashboard/classes',
+//         cName: 'nav_links classes'
+//     },
    
-]

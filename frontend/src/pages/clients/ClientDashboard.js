@@ -2,6 +2,7 @@ import Header from "../../components/Header";
 import Navbar from '../../components/navbar/Navbar';
 import {ClientNavItems} from '../../files/NavItems';
 import ClassDashboard from '../../components/classDashboard/ClassDashboard';
+import { withRouter } from 'react-router-dom';
 
 const ClientDashboard = () => {
 
@@ -24,4 +25,4 @@ const ClientDashboard = () => {
      );
 }
  
-export default ClientDashboard;
+export default withRouter (ClientDashboard);

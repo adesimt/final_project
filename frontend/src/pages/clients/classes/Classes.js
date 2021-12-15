@@ -5,6 +5,7 @@ import ClassCard from '../../../components/class/ClassCard';
 import { CgArrowLongRight } from 'react-icons/cg';
 import './Classes.css';
 import ClassDashboard from '../../../components/classDashboard/ClassDashboard';
+import { withRouter } from 'react-router-dom';
 
 
 
@@ -45,4 +46,4 @@ const ClientClasses = () => {
      );
 }
  
-export default ClientClasses;
+export default withRouter (ClientClasses);

@@ -10,8 +10,8 @@ const passport = require('passport');
 const session = require('express-session');
 require('dotenv').config();
 const authRoutes = require('./routes/authRoutes');
-const { requireAuth } = require('./controllers/authCheck');
-const { verify } = require('crypto');
+const userRoute = require('./routes/user');
+
 
 const app = express();
 require('./config/passport')(passport);
@@ -55,7 +55,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload());
 
-app.use(authRoutes, requireAuth);
+app.use(authRoutes);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
