@@ -3,6 +3,7 @@ import Navbar from '../../components/navbar/Navbar';
 import { TrainerNavItems } from '../../files/NavItems';
 // import { Types } from '../../files/ClassEntities';
 import Client from '../../components/client/Client';
+import { withRouter } from 'react-router-dom';
 
 
 
@@ -42,4 +43,4 @@ const Clients = () => {
     );
 }
  
-export default Clients;
+export default withRouter (Clients);

@@ -1,3 +1,4 @@
+import { withRouter } from 'react-router-dom';
 import Header from '../../components/Header';
 import Navbar from '../../components/navbar/Navbar';
 import Trainer from '../../components/trainer/Trainer';
@@ -42,4 +43,4 @@ const Trainers = () => {
     );
 }
  
-export default Trainers;
+export default withRouter (Trainers);

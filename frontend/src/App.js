@@ -1,7 +1,8 @@
 import './App.css';
 import './pages/landing_page/LandingPage.css';
 import LandingPage from './pages/landing_page/LandingPage';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom';
+import ProtectedRoute from './ProtectedRoute';
 import Login from './pages/account/Login';
 import ClientSignup from './pages/account/Signup_client';
 import TrainerSignup from './pages/account/Signup_trainer';
@@ -20,104 +21,109 @@ import CreateTrainerProfile from './pages/trainers/makeTrainerProfile/CreateTrai
 import CreateClientProfile from './pages/clients/makeClientProfile/CreateClientProfile';
 import ClientOptionPage from './pages/clients/clientProfile/ClientOptionPage';
 import TrainerOptionPage from './pages/trainers/trainerProfile/TrainerOptionPage';
-import AuthProvider from './context/AuthContext';
+import DataProvider from './context/DataContext';
+import AuthProvider, { useAuth } from './context/AuthContext';
 
 
 function App() {
+
+  const { currentUser, isTrainer } = useAuth();
+
   return (
-    <Router>
+    
       <div className="App">
-
-        <AuthProvider>
-
-          <Switch>
-            
-            <Route exact path="/">            
-              <LandingPage />
-            </Route>
-
-            <Route path="/login">            
-              <Login />
-            </Route>
-
-            <Route path="/signup-as-a-client">            
-              <ClientSignup />
-            </Route>
-
-            <Route path="/signup-as-a-trainer">            
-              <TrainerSignup />
-            </Route>
-
-            <Route exact path="/client-dashboard">            
-              <ClientDashboard />
-            </Route>
-
-            <Route exact path="/trainer-dashboard">            
-              <TrainerDashboard />
-            </Route>
-
-            <Route path="/create-a-class">            
-              <CreateClass />
-            </Route>
-
-            <Route path="/client-dashboard/trainers">        
-              <Trainers />
-            </Route>
-
-            <Route path="/client-dashboard/classes">        
-              <ClientClasses />
-            </Route>
-
-            <Route path="/client-dashboard/profile">        
-              <ClientProfile />
-            </Route>
-
-            <Route exact path="/client-signup/create-profile">        
-              <CreateClientProfile />
-            </Route>
-
-            <Route exact path="/client-options">        
-              <ClientOptionPage />
-            </Route>
-
-            <Route path="/trainer-dashboard/clients">        
-              <Clients />
-            </Route>
-
-            <Route path="/trainer-dashboard/classes">        
-              <TrainerClasses />
-            </Route>
-
-            <Route path="/trainer-dashboard/profile">        
-              <TrainerProfile />
-            </Route>
-
-            <Route exact path="/trainer-signup/create-profile">        
-              <CreateTrainerProfile />
-            </Route>
-
-            <Route exact path="/trainer-options">        
-              <TrainerOptionPage />
-            </Route>
-
-            {/* <Route exact path="/trainer-signup/create-profile-option">        
+       
+            <Switch>
               
-            </Route> */}
+              <Route exact path="/">            
+                <LandingPage />
+              </Route>
 
-            <Route path="/test">        
-              <Test />
-            </Route>
+              <Route path="/login">            
+                <Login />
+              </Route>
 
-            <Route path="*">        
-              <PageNotFound />
-            </Route>
 
-          </Switch>
-        </AuthProvider>
+              <Route path="/signup-as-a-client">            
+                <ClientSignup />
+              </Route>
+
+              <Route path="/signup-as-a-trainer">            
+                <TrainerSignup />
+              </Route>
+
+              
+              <Route exact path="/client-dashboard">            
+                <ClientDashboard />
+              </Route>
+
+              <Route exact path="/auth/trainer-dashboard">            
+                <TrainerDashboard />
+              </Route>
+
+              <Route exact path="/auth/trainer-dashboard/profile">            
+                <TrainerProfile />
+              </Route>
+
+              <Route path="/auth/trainer-dashboard/:id/create-a-class">            
+                <CreateClass />
+              </Route>
+
+              <Route path="/auth/trainer-dashboard/classes">        
+                <TrainerClasses />
+              </Route>
+
+              <Route path="/client-dashboard/trainers">        
+                <Trainers />
+              </Route>
+
+              <Route path="/client-dashboard/classes">        
+                <ClientClasses />
+              </Route>
+
+              <Route path="/client-dashboard/profile">        
+                <ClientProfile />
+              </Route>
+
+              <Route exact path="/client-signup/create-profile">        
+                <CreateClientProfile />
+              </Route>
+
+              <Route exact path="/client-options">        
+                <ClientOptionPage />
+              </Route>
+
+              <Route path="/trainer-dashboard/clients">        
+                <Clients />
+              </Route>
+
+              <Route exact path="/trainer-signup/create-profile">        
+                <CreateTrainerProfile />
+              </Route>
+
+              <Route exact path="/trainer-options">        
+                <TrainerOptionPage />
+              </Route>
+
+              {/* <Route exact path="/trainer-signup/create-profile-option">        
+                
+              </Route> */}
+
+              <Route path="/test">        
+                <Test />
+              </Route>
+
+              <Route path="*">        
+                <PageNotFound />
+              </Route>
+
+            </Switch>
+          
+        
       </div>
-    </Router>
+    
 
   );
 }
 
-export default App;
+export default withRouter (App);

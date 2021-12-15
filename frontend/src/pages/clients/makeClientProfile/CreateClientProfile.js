@@ -9,6 +9,7 @@ import { useState, useEffect, useMemo } from 'react';
 import ItemForm from '../../../components/addItems/ItemForm';
 import ItemList from '../../../components/addItems/ItemList';
 import '../../../files/AddItems.css';
+import { withRouter } from 'react-router-dom';
 
 
 const LOCAL_STORAGE_KEY = "fitness-goals";
@@ -147,4 +148,4 @@ const CreateClientProfile = () => {
      );
 }
  
-export default CreateClientProfile;
+export default withRouter (CreateClientProfile);

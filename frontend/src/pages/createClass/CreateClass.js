@@ -10,12 +10,50 @@ import { TimePickerComponent} from '@syncfusion/ej2-react-calendars';
 import { CheckBoxComponent } from '@syncfusion/ej2-react-buttons';
 import ItemForm from '../../components/addItems/ItemForm';
 import ItemList from '../../components/addItems/ItemList';
+import { withRouter, useParams, useHistory } from 'react-router-dom';
+import Axios from 'axios';
+
 
 
 const LOCAL_STORAGE_KEY = "equipments";
 
 
 const CreateClass = () => {
+
+    const history = useHistory();
+
+    const { id } = useParams();
+
+
+    // useEffect(() => {
+    //     Axios.post(`/auth/trainer-dashboard/${id}/create-a-class`)
+    //     .then((res) => {
+    //         setTrainer(res.data);
+    //         setIsTrainer(true);
+    //     })
+    //     .catch(err => {
+    //         console.log(err.message);
+    //     })  
+        
+
+    // }, [id])
+
+
+
+
+
+
+
+    const [formData, setFormData] = useState({
+        levels: "",
+        formats: "",
+        types: "",
+        description: "",
+        days: [],
+        startTime: "",
+        endTime: "",
+        equipments: [],
+    });
 
 
     const [show, setShow] = useState(false);
@@ -33,7 +71,10 @@ const CreateClass = () => {
     //for levels
     function makeActiveLevels(index){
         setLevels({...levels, activeBtn: levels.allLevels[index]});
-        console.log(levels.allLevels[index].name);
+        setFormData({...formData, levels: levels.allLevels[index].name});
+
+
+        // console.log(levels.allLevels[index].name);
     }
 
     const showActiveLevels = (index) => {
@@ -49,7 +90,9 @@ const CreateClass = () => {
     //for formats
     function makeActiveFormats(index){
         setFormats({...formats, activeBtn: formats.allFormats[index]});
-        console.log(formats.allFormats[index].name);
+        setFormData({...formData, formats: formats.allFormats[index].name});
+
+        // console.log(formats.allFormats[index].name);
     }
 
     const showActiveFormats = (index) => {
@@ -65,7 +108,8 @@ const CreateClass = () => {
     //for types
     function makeActiveTypes(index){
         setTypes({...types, activeBtn: types.allTypes[index]});
-        console.log(types.allTypes[index].name);
+        setFormData({...formData, types: types.allTypes[index].name});
+        // console.log(types.allTypes[index].name);
     }
 
     const showActiveTypes = (index) => {
@@ -79,62 +123,129 @@ const CreateClass = () => {
 
     // for checkbox //
 
+    const [check, setCheck] = useState([]);
+
     const handleCheck = (e) => {
         const value = e.target.value;
         if(e.target.checked){
-            console.log(`${value} is checked`);
+            setFormData({...formData, days: [...formData.days, value]});
+
+            //setCheck([...check, value]);
+            // setFormData({...formData, days: value});
         }else{
-            console.log(`${value} is not checked`);
+            // return false;
+            const removeValue= formData.days.filter(item => item !== value);
+            setFormData({...formData, days: removeValue});
+
         }
     }
+
+    let newDays = [...new Set(formData.days)];
 
 
     // timepicker
     //const timeValue = new Date("");
 
-    const [startTime, setStartTime] = useState("");
-    const [endTime, setEndTime] = useState("");
+    // const [startTime, setStartTime] = useState("");
+    // const [endTime, setEndTime] = useState("");
 
     const handleStartTime = (e) => {
         const newValue = e.target.value
-        setStartTime(newValue);
-        console.log(newValue.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+        //setStartTime(newValue);
+        setFormData({...formData, startTime: newValue.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})});
+
     }
 
     const handleEndTime = (e) => {
         const newValue = e.target.value
-        setEndTime(newValue);
-        console.log(newValue.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+        setFormData({...formData, endTime: newValue.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})});
+    }
+
+    const handleDescription = (e) => {
+        setFormData({...formData, description: e.target.value});
+
+    }
+
+
+    const handleTypes = (e) => {
+        setFormData({...formData, types: e.target.value});
+
     }
 
     
 // Equipment
 
-
-    const [items, setItems] = useState([]);    
-
     useEffect(() => {
         const storageItems = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY,));
         if(storageItems){
-            setItems(storageItems);
+            //setItems(storageItems);
+            setFormData({...formData, equipments: storageItems});
+
         }
     }, [])
 
     useEffect(() => {        
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(items))
-    }, [items]);
+        // localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(equipments));
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData.equipments));
+
+    }, [formData.equipments]);
 
 
     const addItem = (newItem) => {
-        setItems([newItem, ...items])
-        console.log(newItem);
-    }
+        //setItems([newItem, ...equipments]);
+        // setFormData([newItem, ...formData.equipments]);
+        setFormData({...formData, equipments: [newItem, ...formData.equipments]});
+
+    };
 
     const removeItem = (id) => {
-        const removeItem = items.filter(item => item.id !== id);
-        setItems(removeItem);
+        // const removeItem = equipments.filter(item => item.id !== id);
+        const removeItem = formData.equipments.filter(item => item.id !== id);
+        // setItems(removeItem);
+        setFormData({...formData, equipments: removeItem});
+
         
-    }
+    };
+
+
+// Equipment
+
+
+const [message, setMessage] = useState("")
+
+
+// handle Submit
+const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // console.log(newDays);
+    // console.log(formData);
+
+       
+    const data = new FormData();
+    data.append('levels', formData.levels);
+    data.append('formats', formData.formats);
+    data.append('types', formData.types);
+    data.append('description', formData.description);
+    data.append('days', JSON.stringify(formData.days));
+    data.append('startTime', formData.startTime);  
+    data.append('endTime', formData.endTime);
+    data.append('equipments', JSON.stringify(formData.equipments));
+
+    Axios.post(`/auth/trainer-dashboard/${id}/create-a-class`, data)
+    .then((res) => {
+        setMessage(res.data.message);
+        setTimeout(() => {
+            history.push(`/auth/trainer-dashboard/classes`)
+        }, 2000)
+    })
+    .catch(err => {
+        console.log(err.message);
+    })  
+    
+}
+
+
 
 
 
@@ -145,10 +256,11 @@ const CreateClass = () => {
         
             <Header />
             <div className="main_page">
+                
 
                 <div className="class_content">
                     <h3 className="heading_class">Add a new class</h3>
-                    <form className="entity_container">
+                    <form className="entity_container" onSubmit={handleSubmit}>
                         <div className="entity_row">
                             <div className="row_label">Level of competency</div>
                             <div className="row_btns">
@@ -191,11 +303,17 @@ const CreateClass = () => {
                                 <div className="plus_icon"><HiPlus /></div>
                             </div>
 
-                            { show? 
+                            { show ? 
                             
                                 <div className="more">
                                     <p>Type a training type that's not in the list above</p>
-                                    <input type="text" className="input_more" />
+                                    <input 
+                                        type="text" 
+                                        className="input_more"
+                                        value={formData.types}
+                                        onChange={handleTypes}
+                                        
+                                        />
                                     <Button cName='all_btn' name='Add more type'/>
                                 </div>
                                 : null
@@ -208,7 +326,13 @@ const CreateClass = () => {
                         <div className="entity_row">
                             <div className="row_label">Description</div>
                             <div className="row_text">
-                                <textarea placeholder="Provide additional description/information about the class" cols="105" rows="15"></textarea>
+                                <textarea 
+                                    placeholder="Provide additional description/information about the class" 
+                                    cols="105" 
+                                    rows="15"
+                                    value={formData.description}
+                                    onChange={handleDescription}
+                                ></textarea>
                             </div>
                         </div>
 
@@ -254,7 +378,7 @@ const CreateClass = () => {
                                     <div className="row_text">
                                         <TimePickerComponent 
                                             placeholder="Select a start time"
-                                            value={startTime}
+                                            value={formData.startTime}
                                             step={15}
                                             onChange ={handleStartTime}
                                                                                           
@@ -272,7 +396,7 @@ const CreateClass = () => {
                                         
                                         <TimePickerComponent 
                                             placeholder="Select an end time"
-                                            value={endTime}
+                                            value={formData.endTime}
                                             step={15}
                                             onChange ={handleEndTime}
                                             
@@ -298,13 +422,18 @@ const CreateClass = () => {
                             </div>
 
                             <ItemList 
-                                    items={items}
+                                    items={formData.equipments}
                                     removeItem={removeItem}
+                                    name="allEquipments"
+
                                     
                                 />
 
                             
                         </div>
+
+                        {message === "" ? <span></span> : <span className='success-message'>{message}</span>}
+
 
                         <button className="add_class_btn">
                             <FlatButton name='add class' />
@@ -323,4 +452,4 @@ const CreateClass = () => {
      );
 }
  
-export default CreateClass;
+export default withRouter (CreateClass);

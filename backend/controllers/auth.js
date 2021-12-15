@@ -4,8 +4,15 @@ const fileUpload = require('express-fileupload');
 const formidable = require('formidable');
 const fs = require('fs');
 const path = require('path');
+const jwt = require('jsonwebtoken');
 
 const saltRounds = 10;
+
+
+const maxAge = 3 * 24 * 60 * 60;
+const createToken = (id) => {
+    return jwt.sign({ id }, 'fitness app secret', { expiresIn: maxAge });
+}
 
 
 exports.trainerSignUp = (req, res, next) => {
@@ -87,7 +94,10 @@ exports.trainerSignUp = (req, res, next) => {
                                     console.log(err);
                                 }
                                 console.log(result2);
-                                res.send({user: currentUser});
+
+                                const token = createToken(trainerId);
+                                res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+                                res.send({user: [ trainerId, result.trainer_email ], isAuth: true, isTrainer: true});
                             }); 
                             
 
@@ -105,10 +115,7 @@ exports.trainerSignUp = (req, res, next) => {
                 
                     })
 
-                   
-
-
-                    
+       
                 }
 
             });
@@ -137,7 +144,7 @@ exports.trainerSignUp = (req, res, next) => {
 
 
 
-
+// client signup
 exports.clientSignUp = (req, res, next) => {
     
     const { firstName, lastName, email, password, city, state} = req.body;
@@ -192,4 +199,59 @@ exports.clientSignUp = (req, res, next) => {
     
   
   
+};
+
+
+
+// user login
+exports.login = (req, res, next) => {
+    
+
+    const { email, password } = req.body;
+
+    const trainer_query = "SELECT * FROM trainer WHERE trainer_email = ?;"
+    const client_query = "SELECT * FROM client WHERE client_email = ?;"
+
+    db.query(trainer_query, email,(err, result1)=> {
+        
+        if(err){
+            res.send({err});
+        }
+
+        if(result1.length > 0){
+            bcrypt.compare(password, result1[0].trainer_password, (error, response) => {
+                if(response){
+                    //req.session.user = result1
+                    trainerId = result1[0].trainer_id
+                    
+                    const token = createToken(trainerId);
+                    res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+                    res.send({user: result1, isAuth: true, isTrainer: true});
+                }else{
+                    db.query(client_query, email, (err, result2) => {
+                            if(err){
+                                res.send({err});
+                            }
+                            if(result2.length > 0){
+                                bcrypt.compare(password, result2[0].client_password, (err, response) => {
+                                    if(response){
+                                        //session
+                                        res.send(result2)
+                                    }else{
+                                        res.send({message: "Wrong email or password combination!"});
+                                    }
+                    
+                                });
+                            }else{
+                                res.send({message: "User doesn't exist"});
+                            }
+                        })
+                }
+            })
+        }else{
+            res.send({message: "User doesn't exist"});
+             
+        }
+    })
+
 };

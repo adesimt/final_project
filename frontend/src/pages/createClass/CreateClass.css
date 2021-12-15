@@ -150,3 +150,12 @@
 .clear_btn:hover{
     opacity: 0.6;
 }
+
+.success-message{
+    font-size: 2em;
+    color:#1DAE8C;
+    font-weight: 400;
+    text-align: center;
+    display: block;
+    margin: 10px auto;
+}

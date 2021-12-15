@@ -97,7 +97,7 @@ const TrainerSignup = () => {
         }
 
 
-        //setForm();
+        
 
         
     }
@@ -105,13 +105,11 @@ const TrainerSignup = () => {
 
 
     const handleSubmit = (e) => {
-        //console.log(formData);
-
+        
 
         e.preventDefault();
 
-        //const newData = {...formData, file: JSON.stringify(file) }
-
+       
         const data = new FormData();
         data.append('firstName', formData.firstName);
         data.append('lastName', formData.lastName);
@@ -126,24 +124,8 @@ const TrainerSignup = () => {
         data.append('areaOfSpec', JSON.stringify(formData.items));
 
 
-
-        // for(var pair of data.entries()) {
-        //     console.log(pair[0]+ ', '+ pair[1]);
-        // }
-
-        //console.log(data);
-        //console.log(newData);
-
-
         try{
 
-            // fetch('/signup-as-a-trainer', {
-            //     method: 'POST', 
-            //     headers: { "Content-Type": "application/json"  },
-            //     body: JSON.stringify(data)
-            // }).then(() => {
-            //     console.log("new user added");
-            // })
             Axios.post('/signup-as-a-trainer', data)
             .then((response) => {
 

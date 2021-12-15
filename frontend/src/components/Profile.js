@@ -1,33 +1,25 @@
-import Header from "../../../components/Header";
-import ProfileBanner from "../../../components/profileBanner/ProfileBanner";
-import SubBanner from "../../../components/SubBanner";
-import { specs, offeredClasses} from "../../../files/profileFiles";
-import { withRouter } from 'react-router-dom';
+import '../files/Profile.css';
+import Header from './Header';
+import ProfileBanner from './profileBanner/ProfileBanner';
+import SubBanner from './SubBanner';
 
-const ClientProfile = () => {
+const Profile = ({ specs, offeredClasses }) => {
     return ( 
         <>
-
             <div className="main_page">
                 <Header />
                 <ProfileBanner />
-                <SubBanner name = 'Client' subNumber1 = '3' subNumber2 = '3'/>
+                <SubBanner name = 'Trainers' subNumber1 = '4' subNumber2 = '3'/>
 
                 <div className="profile_info">
                     <div className="profile_section">
-                        <div className="profile_Section_title">Height</div>
-                        <p className="dim_para">
-                            5 ft 1 in
-                        </p>
-                    </div>
-                    <div className="profile_section">
                         <div className="profile_Section_title">About me</div>
-                        <p className="dim_para">
-                            180 lbs
+                        <p className="about_me_para">
+                            Madison is fueled by her passion for understanding the nuances of cross-cultural advertising. She considers herself a ‘forever student,’ eager to both build on her academic foundations in psychology and sociology and stay in tune with the latest digital marketing strategies through continued coursework and professional development.
                         </p>
                     </div>
                     <div className="profile_section">
-                        <div className="profile_Section_title">Fitness goals</div>
+                        <div className="profile_Section_title">Specializations</div>
                         <div className="specs_container">
                             {specs.map((item, index) => {
                                 return <div className="specs" key={index}>{item}</div>
@@ -36,7 +28,7 @@ const ClientProfile = () => {
                         
                     </div>
                     <div className="profile_section">
-                        <div className="profile_Section_title">Enrolled classes</div>
+                        <div className="profile_Section_title">Offered classes</div>
                         <div className="offer_container">
                             {offeredClasses.map((item, index) => {
                                 return <div className="my_classes" key={index}>{item}</div>
@@ -46,8 +38,9 @@ const ClientProfile = () => {
                     </div>
                 </div>
             </div>
+        
         </>
      );
 }
  
-export default withRouter (ClientProfile);
+export default Profile;

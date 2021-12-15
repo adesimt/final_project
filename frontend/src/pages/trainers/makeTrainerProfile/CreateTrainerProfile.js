@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import '../../../files/makeProfile.css';
 import { useState, useEffect } from 'react';
 import '../../../files/AddItems.css';
@@ -226,4 +226,4 @@ const CreateTrainerProfile = ({ formData, setFormData }) => {
 
 }
  
-export default CreateTrainerProfile;
+export default withRouter (CreateTrainerProfile);
